@@ -1,0 +1,8 @@
+[2026-04-02 14:27:57] [INFO][Thread 1] Servidor escuchando en puerto 8080
+[2026-04-02 14:32:54] [INFO][Thread 1] Servidor escuchando en puerto 8080
+[2026-04-02 14:44:41] [INFO][Thread 1] IP=127.0.0.1 Puerto=25936 Mensaje=Conexion entrante Respuesta=
+[2026-04-02 14:44:41] [INFO][Thread 2] IP=127.0.0.1 Puerto=25936 Mensaje=Conexion iniciada Respuesta=tipo=desconocido
+[2026-04-02 14:44:43] [INFO][Thread 2] IP=127.0.0.1 Puerto=25936 Mensaje=hola
+ Respuesta=OK
+
+[2026-04-02 14:45:43] [INFO][Thread 2] IP=127.0.0.1 Puerto=25936 Mensaje=Timeout de recepcion Respuesta=
