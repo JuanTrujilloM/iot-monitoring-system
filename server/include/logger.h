@@ -1,10 +1,10 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
-int logger_init(const char *ruta_archivo);
-void logger_info(const char *mensaje);
-void logger_error(const char *mensaje);
-void logger_evento(const char *nivel, const char *ip, int puerto, const char *mensaje, const char *respuesta);
+int logger_init(const char *log_path);
+void logger_info(const char *message);
+void logger_error(const char *message);
+void logger_event(const char *level, const char *ip, int port, const char *message, const char *response);
 void logger_close(void);
 
 #endif

@@ -5,125 +5,125 @@
 #include <string.h>
 #include <time.h>
 
-static FILE *g_archivo_log = NULL;
+static FILE *g_log_file = NULL;
 static pthread_mutex_t g_logger_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static unsigned long logger_thread_id(void) {
 	return (unsigned long)pthread_self();
 }
 
-static void logger_escribir(const char *nivel, const char *mensaje) {
-	time_t ahora = time(NULL);
-	struct tm tiempo_local;
+static void logger_write(const char *level, const char *message) {
+	time_t now = time(NULL);
+	struct tm local_time;
 	char timestamp[32];
 	unsigned long tid = logger_thread_id();
 
-	memset(&tiempo_local, 0, sizeof(tiempo_local));
+	memset(&local_time, 0, sizeof(local_time));
 
 #ifdef _WIN32
-	if (localtime_s(&tiempo_local, &ahora) != 0) {
-		memset(&tiempo_local, 0, sizeof(tiempo_local));
+	if (localtime_s(&local_time, &now) != 0) {
+		memset(&local_time, 0, sizeof(local_time));
 	}
 #else
-	if (localtime_r(&ahora, &tiempo_local) == NULL) {
-		memset(&tiempo_local, 0, sizeof(tiempo_local));
+	if (localtime_r(&now, &local_time) == NULL) {
+		memset(&local_time, 0, sizeof(local_time));
 	}
 #endif
 
-	if (strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", &tiempo_local) == 0) {
+	if (strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", &local_time) == 0) {
 		snprintf(timestamp, sizeof(timestamp), "0000-00-00 00:00:00");
 	}
 
 	pthread_mutex_lock(&g_logger_mutex);
-	fprintf(stdout, "[%s] [%s][Thread %lu] %s\n", timestamp, nivel, tid, mensaje);
+	fprintf(stdout, "[%s] [%s][Thread %lu] %s\n", timestamp, level, tid, message);
 	fflush(stdout);
 
-	if (g_archivo_log != NULL) {
-		fprintf(g_archivo_log, "[%s] [%s][Thread %lu] %s\n", timestamp, nivel, tid, mensaje);
-		fflush(g_archivo_log);
+	if (g_log_file != NULL) {
+		fprintf(g_log_file, "[%s] [%s][Thread %lu] %s\n", timestamp, level, tid, message);
+		fflush(g_log_file);
 	}
 	pthread_mutex_unlock(&g_logger_mutex);
 }
 
-static void logger_escribir_evento(const char *nivel, const char *ip, int puerto, const char *mensaje, const char *respuesta) {
-	time_t ahora = time(NULL);
-	struct tm tiempo_local;
+static void logger_write_event(const char *level, const char *ip, int port, const char *message, const char *response) {
+	time_t now = time(NULL);
+	struct tm local_time;
 	char timestamp[32];
 	unsigned long tid = logger_thread_id();
-	char linea[1536];
+	char line[1536];
 
-	memset(&tiempo_local, 0, sizeof(tiempo_local));
+	memset(&local_time, 0, sizeof(local_time));
 
 #ifdef _WIN32
-	if (localtime_s(&tiempo_local, &ahora) != 0) {
-		memset(&tiempo_local, 0, sizeof(tiempo_local));
+	if (localtime_s(&local_time, &now) != 0) {
+		memset(&local_time, 0, sizeof(local_time));
 	}
 #else
-	if (localtime_r(&ahora, &tiempo_local) == NULL) {
-		memset(&tiempo_local, 0, sizeof(tiempo_local));
+	if (localtime_r(&now, &local_time) == NULL) {
+		memset(&local_time, 0, sizeof(local_time));
 	}
 #endif
 
-	if (strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", &tiempo_local) == 0) {
+	if (strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", &local_time) == 0) {
 		snprintf(timestamp, sizeof(timestamp), "0000-00-00 00:00:00");
 	}
 
 	snprintf(
-		linea,
-		sizeof(linea),
-		"IP=%s Puerto=%d Mensaje=%s Respuesta=%s",
-		ip != NULL ? ip : "desconocida",
-		puerto,
-		mensaje != NULL ? mensaje : "",
-		respuesta != NULL ? respuesta : "");
+		line,
+		sizeof(line),
+		"IP=%s Port=%d Message=%s Response=%s",
+		ip != NULL ? ip : "unknown",
+		port,
+		message != NULL ? message : "",
+		response != NULL ? response : "");
 
 	pthread_mutex_lock(&g_logger_mutex);
-	fprintf(stdout, "[%s] [%s][Thread %lu] %s\n", timestamp, nivel, tid, linea);
+	fprintf(stdout, "[%s] [%s][Thread %lu] %s\n", timestamp, level, tid, line);
 	fflush(stdout);
 
-	if (g_archivo_log != NULL) {
-		fprintf(g_archivo_log, "[%s] [%s][Thread %lu] %s\n", timestamp, nivel, tid, linea);
-		fflush(g_archivo_log);
+	if (g_log_file != NULL) {
+		fprintf(g_log_file, "[%s] [%s][Thread %lu] %s\n", timestamp, level, tid, line);
+		fflush(g_log_file);
 	}
 	pthread_mutex_unlock(&g_logger_mutex);
 }
 
-int logger_init(const char *ruta_archivo) {
+int logger_init(const char *log_path) {
 	pthread_mutex_lock(&g_logger_mutex);
-	if (g_archivo_log != NULL) {
-		fclose(g_archivo_log);
-		g_archivo_log = NULL;
+	if (g_log_file != NULL) {
+		fclose(g_log_file);
+		g_log_file = NULL;
 	}
 
-	g_archivo_log = fopen(ruta_archivo, "a");
+	g_log_file = fopen(log_path, "a");
 	pthread_mutex_unlock(&g_logger_mutex);
 
-	if (g_archivo_log == NULL) {
+	if (g_log_file == NULL) {
 		return -1;
 	}
 
-	setvbuf(g_archivo_log, NULL, _IOLBF, 0);
+	setvbuf(g_log_file, NULL, _IOLBF, 0);
 	return 0;
 }
 
-void logger_info(const char *mensaje) {
-	logger_escribir("INFO", mensaje);
+void logger_info(const char *message) {
+	logger_write("INFO", message);
 }
 
-void logger_error(const char *mensaje) {
-	logger_escribir("ERROR", mensaje);
+void logger_error(const char *message) {
+	logger_write("ERROR", message);
 }
 
-void logger_evento(const char *nivel, const char *ip, int puerto, const char *mensaje, const char *respuesta) {
-	logger_escribir_evento(nivel, ip, puerto, mensaje, respuesta);
+void logger_event(const char *level, const char *ip, int port, const char *message, const char *response) {
+	logger_write_event(level, ip, port, message, response);
 }
 
 void logger_close(void) {
 	pthread_mutex_lock(&g_logger_mutex);
-	if (g_archivo_log != NULL) {
-		fflush(g_archivo_log);
-		fclose(g_archivo_log);
-		g_archivo_log = NULL;
+	if (g_log_file != NULL) {
+		fflush(g_log_file);
+		fclose(g_log_file);
+		g_log_file = NULL;
 	}
 	pthread_mutex_unlock(&g_logger_mutex);
 }

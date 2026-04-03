@@ -5,27 +5,27 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-	char *fin = NULL;
-	long puerto_largo;
+	char *end = NULL;
+	long port_long;
 
 	if (argc != 3) {
-		fprintf(stderr, "Uso: %s <puerto> <archivoLogs>\n", argv[0]);
+		fprintf(stderr, "Usage: %s <port> <logFile>\n", argv[0]);
 		return EXIT_FAILURE;
 	}
 
-	puerto_largo = strtol(argv[1], &fin, 10);
-	if (fin == argv[1] || *fin != '\0' || puerto_largo < 1 || puerto_largo > 65535 || puerto_largo > INT_MAX) {
-		fprintf(stderr, "Error: Puerto invalido (%s). Debe estar entre 1 y 65535.\n", argv[1]);
+	port_long = strtol(argv[1], &end, 10);
+	if (end == argv[1] || *end != '\0' || port_long < 1 || port_long > 65535 || port_long > INT_MAX) {
+		fprintf(stderr, "Error: Invalid port (%s). Must be between 1 and 65535.\n", argv[1]);
 		return EXIT_FAILURE;
 	}
 
 	{
-		int resultado = iniciar_servidor((int)puerto_largo, argv[2]);
+		int result = start_server((int)port_long, argv[2]);
 
-		if (resultado != EXIT_SUCCESS) {
-			fprintf(stderr, "El servidor finalizo con errores.\n");
+		if (result != EXIT_SUCCESS) {
+			fprintf(stderr, "Server finished with errors.\n");
 		}
 
-		return resultado;
+		return result;
 	}
 }

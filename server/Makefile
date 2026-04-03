@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Wpedantic -std=c11 -Iinclude
 LDFLAGS_LINUX = -pthread
 LDFLAGS_WINDOWS = -lws2_32 -pthread
 
-SRC = src/main.c src/server.c src/logger.c
+SRC = src/main.c src/server.c src/logger.c src/protocol.c
 OBJ = $(SRC:.c=.o)
 BIN_LINUX = server
 BIN_WINDOWS = server.exe

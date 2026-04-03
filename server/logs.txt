@@ -6,3 +6,14 @@
  Respuesta=OK
 
 [2026-04-02 14:45:43] [INFO][Thread 2] IP=127.0.0.1 Puerto=25936 Mensaje=Timeout de recepcion Respuesta=
+[2026-04-02 21:53:10] [INFO][Thread 8350899968] Server listening on port 8080
+[2026-04-02 21:54:12] [INFO][Thread 8350899968] IP=127.0.0.1 Port=51339 Message=Incoming connection Response=
+[2026-04-02 21:54:12] [INFO][Thread 6162313216] IP=127.0.0.1 Port=51339 Message=Connection started Response=type=unknown
+[2026-04-02 21:55:12] [INFO][Thread 6162313216] IP=127.0.0.1 Port=51339 Message=Receive error or timeout Response=
+[2026-04-02 21:56:07] [INFO][Thread 8350899968] IP=127.0.0.1 Port=51346 Message=Incoming connection Response=
+[2026-04-02 21:56:07] [INFO][Thread 6162313216] IP=127.0.0.1 Port=51346 Message=Connection started Response=type=unknown
+[2026-04-02 21:56:15] [INFO][Thread 6162313216] IP=127.0.0.1 Port=51346 Message=PING Response=PONG
+
+[2026-04-02 21:56:23] [INFO][Thread 6162313216] IP=127.0.0.1 Port=51346 Message=PONG Response=ERROR 404 Command not found
+
+[2026-04-02 21:57:23] [INFO][Thread 6162313216] IP=127.0.0.1 Port=51346 Message=Receive error or timeout Response=
