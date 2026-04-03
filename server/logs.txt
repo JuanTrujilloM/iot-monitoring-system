@@ -99,3 +99,98 @@
 [2026-04-03 01:43:52] [INFO][Thread 6159822848] IP=127.0.0.1 Port=52550 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
 
 [2026-04-03 01:44:52] [INFO][Thread 6159822848] IP=127.0.0.1 Port=52550 Message=Receive error or timeout Response=
+[2026-04-03 10:09:47] [INFO][Thread 8599859456] Server listening on port 8080
+[2026-04-03 10:09:47] [INFO][Thread 8599859456] Sensor manager initialized
+[2026-04-03 10:10:08] [INFO][Thread 8599859456] IP=127.0.0.1 Port=49620 Message=Incoming connection Response=
+[2026-04-03 10:10:08] [INFO][Thread 6101807104] IP=127.0.0.1 Port=49620 Message=Connection started Response=type=unknown
+[2026-04-03 10:10:23] [INFO][Thread 6101807104] Sensor registered: SENS-01 (temperatura)
+[2026-04-03 10:10:23] [INFO][Thread 6101807104] IP=127.0.0.1 Port=49620 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 10:10:29] [INFO][Thread 6101807104] Measurement from SENS-01: 25.50 C
+[2026-04-03 10:10:29] [INFO][Thread 6101807104] IP=127.0.0.1 Port=49620 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 10:11:25] [INFO][Thread 8599859456] IP=127.0.0.1 Port=49629 Message=Incoming connection Response=
+[2026-04-03 10:11:25] [INFO][Thread 6102380544] IP=127.0.0.1 Port=49629 Message=Connection started Response=type=unknown
+[2026-04-03 10:11:25] [INFO][Thread 6102380544] IP=127.0.0.1 Port=49629 Message=GET_SENSORS Response=SENSORS SENS-01,temperatura,25.50,C;
+
+[2026-04-03 10:11:29] [INFO][Thread 6101807104] IP=127.0.0.1 Port=49620 Message=Receive error or timeout Response=
+[2026-04-03 10:12:25] [INFO][Thread 6102380544] IP=127.0.0.1 Port=49629 Message=Receive error or timeout Response=
+[2026-04-03 10:25:17] [INFO][Thread 8599859456] Server listening on port 8080
+[2026-04-03 10:25:17] [INFO][Thread 8599859456] Sensor manager initialized
+[2026-04-03 10:25:17] [INFO][Thread 8599859456] Alert threshold registered for temperatura: > 30.00
+[2026-04-03 10:25:22] [INFO][Thread 8599859456] IP=127.0.0.1 Port=49693 Message=Incoming connection Response=
+[2026-04-03 10:25:22] [INFO][Thread 6093565952] IP=127.0.0.1 Port=49693 Message=Connection started Response=type=unknown
+[2026-04-03 10:25:33] [INFO][Thread 6093565952] Sensor registered: SENS-01 (temperatura)
+[2026-04-03 10:25:33] [INFO][Thread 6093565952] IP=127.0.0.1 Port=49693 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 10:25:38] [INFO][Thread 6093565952] Measurement from SENS-01: 35.50 C
+[2026-04-03 10:25:38] [INFO][Thread 6093565952] IP=127.0.0.1 Port=49693 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 10:25:47] [INFO][Thread 8599859456] IP=127.0.0.1 Port=49695 Message=Incoming connection Response=
+[2026-04-03 10:25:47] [INFO][Thread 6094139392] IP=127.0.0.1 Port=49695 Message=Connection started Response=type=unknown
+[2026-04-03 10:25:47] [INFO][Thread 6094139392] IP=127.0.0.1 Port=49695 Message=GET_SENSORS Response=SENSORS SENS-01,temperatura,35.50,C;
+
+[2026-04-03 10:25:48] [INFO][Thread 6094139392] IP=127.0.0.1 Port=49695 Message=GET_ALERTS Response=ALERTS 
+
+[2026-04-03 10:26:38] [INFO][Thread 6093565952] IP=127.0.0.1 Port=49693 Message=Receive error or timeout Response=
+[2026-04-03 10:26:48] [INFO][Thread 6094139392] IP=127.0.0.1 Port=49695 Message=Receive error or timeout Response=
+[2026-04-03 10:33:26] [INFO][Thread 8599859456] IP=127.0.0.1 Port=49714 Message=Incoming connection Response=
+[2026-04-03 10:33:26] [INFO][Thread 6093565952] IP=127.0.0.1 Port=49714 Message=Connection started Response=type=unknown
+[2026-04-03 10:33:26] [INFO][Thread 6093565952] IP=127.0.0.1 Port=49714 Message=GET_SENSORS Response=SENSORS SENS-01,temperatura,35.50,C;
+
+[2026-04-03 10:33:26] [INFO][Thread 6093565952] IP=127.0.0.1 Port=49714 Message=GET_ALERTS Response=ALERTS 
+
+[2026-04-03 10:34:26] [INFO][Thread 6093565952] IP=127.0.0.1 Port=49714 Message=Receive error or timeout Response=
+[2026-04-03 10:43:37] [INFO][Thread 8599859456] Server listening on port 8080
+[2026-04-03 10:43:37] [INFO][Thread 8599859456] Sensor manager initialized
+[2026-04-03 10:43:37] [INFO][Thread 8599859456] Alert threshold registered for temperatura: > 30.00
+[2026-04-03 10:43:57] [INFO][Thread 8599859456] IP=127.0.0.1 Port=49805 Message=Incoming connection Response=
+[2026-04-03 10:43:57] [INFO][Thread 6133657600] IP=127.0.0.1 Port=49805 Message=Connection started Response=type=unknown
+[2026-04-03 10:44:11] [INFO][Thread 6133657600] IP=127.0.0.1 Port=49805 Message=LOGIN Response=OK ROLE_OPERATOR
+
+[2026-04-03 10:44:17] [INFO][Thread 6133657600] IP=127.0.0.1 Port=49805 Message=LOGIN Response=ERROR 401 Invalid credentials
+
+[2026-04-03 10:44:34] [INFO][Thread 6133657600] IP=127.0.0.1 Port=49805 Message=LOGIN Response=ERROR 503 Auth service unavailable
+
+[2026-04-03 10:45:34] [INFO][Thread 6133657600] IP=127.0.0.1 Port=49805 Message=Receive error or timeout Response=
+[2026-04-03 11:33:57] [INFO][Thread 8599859456] Server listening on port 8080
+[2026-04-03 11:33:57] [INFO][Thread 8599859456] Sensor manager initialized
+[2026-04-03 11:33:57] [INFO][Thread 8599859456] Alert threshold registered for temperatura: > 30.00
+[2026-04-03 11:34:01] [INFO][Thread 8599859456] IP=127.0.0.1 Port=49866 Message=Incoming connection Response=
+[2026-04-03 11:34:01] [INFO][Thread 6128283648] IP=127.0.0.1 Port=49866 Message=Connection started Response=type=unknown
+[2026-04-03 11:34:56] [INFO][Thread 8599859456] IP=127.0.0.1 Port=49867 Message=Incoming connection Response=
+[2026-04-03 11:34:56] [INFO][Thread 6128857088] IP=127.0.0.1 Port=49867 Message=Connection started Response=type=unknown
+[2026-04-03 11:35:01] [INFO][Thread 6128283648] IP=127.0.0.1 Port=49866 Message=Receive error or timeout Response=
+[2026-04-03 11:35:09] [INFO][Thread 6128857088] IP=127.0.0.1 Port=49867 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 11:35:09] [INFO][Thread 6128857088] IP=127.0.0.1 Port=49867 Message=GET_SENSORS Response=SENSORS 
+
+[2026-04-03 11:35:09] [INFO][Thread 6128857088] IP=127.0.0.1 Port=49867 Message=GET_ALERTS Response=ALERTS 
+
+[2026-04-03 11:35:14] [INFO][Thread 6128857088] IP=127.0.0.1 Port=49867 Message=Client disconnected Response=
+[2026-04-03 11:39:01] [INFO][Thread 8599859456] IP=127.0.0.1 Port=49891 Message=Incoming connection Response=
+[2026-04-03 11:39:01] [INFO][Thread 6128283648] IP=127.0.0.1 Port=49891 Message=Connection started Response=type=unknown
+[2026-04-03 11:39:28] [INFO][Thread 6128283648] IP=127.0.0.1 Port=49891 Message=LOGIN Response=ERROR 401 Invalid credentials
+
+[2026-04-03 11:39:30] [INFO][Thread 6128283648] IP=127.0.0.1 Port=49891 Message=LOGIN Response=ERROR 503 Auth service unavailable
+
+[2026-04-03 11:39:45] [INFO][Thread 6128283648] IP=127.0.0.1 Port=49891 Message=LOGIN Response=ERROR 503 Auth service unavailable
+
+[2026-04-03 11:39:47] [INFO][Thread 6128283648] IP=127.0.0.1 Port=49891 Message=Client disconnected Response=
+[2026-04-03 11:39:55] [INFO][Thread 8599859456] Server listening on port 8080
+[2026-04-03 11:39:55] [INFO][Thread 8599859456] Sensor manager initialized
+[2026-04-03 11:39:55] [INFO][Thread 8599859456] Alert threshold registered for temperatura: > 30.00
+[2026-04-03 11:40:51] [INFO][Thread 8599859456] IP=127.0.0.1 Port=49900 Message=Incoming connection Response=
+[2026-04-03 11:40:51] [INFO][Thread 6101168128] IP=127.0.0.1 Port=49900 Message=Connection started Response=type=unknown
+[2026-04-03 11:40:56] [INFO][Thread 6101168128] IP=127.0.0.1 Port=49900 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 11:40:56] [INFO][Thread 6101168128] IP=127.0.0.1 Port=49900 Message=GET_SENSORS Response=SENSORS 
+
+[2026-04-03 11:40:56] [INFO][Thread 6101168128] IP=127.0.0.1 Port=49900 Message=GET_ALERTS Response=ALERTS 
+
+[2026-04-03 11:40:59] [INFO][Thread 6101168128] IP=127.0.0.1 Port=49900 Message=Client disconnected Response=
+[2026-04-03 11:41:01] [INFO][Thread 8599859456] IP=127.0.0.1 Port=49903 Message=Incoming connection Response=
+[2026-04-03 11:41:01] [INFO][Thread 6101168128] IP=127.0.0.1 Port=49903 Message=Connection started Response=type=unknown
+[2026-04-03 11:41:04] [INFO][Thread 6101168128] IP=127.0.0.1 Port=49903 Message=LOGIN Response=ERROR 401 Invalid credentials
+
+[2026-04-03 11:41:06] [INFO][Thread 6101168128] IP=127.0.0.1 Port=49903 Message=Client disconnected Response=

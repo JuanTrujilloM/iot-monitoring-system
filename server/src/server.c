@@ -3,6 +3,7 @@
 #include "protocol.h"
 #include "sensor_manager.h"
 #include "alert_engine.h"
+#include "auth_client.h"
 
 #ifdef _WIN32
 #include <winsock2.h>
@@ -121,10 +122,10 @@ static void *handle_client(void *arg) {
                             // Check for alerts after adding measurement
                             const char* sensor_type = sensor_manager_get_sensor_type(msg.args[0]);
                             if (sensor_type) {
-								const char* alert_msg = alert_engine_check_measurement(msg.args[0], sensor_type, value);
+								int alertas_disparadas = alert_engine_check_measurement(msg.args[0], sensor_type, value);
 
-								if (alert_msg != NULL) {
-									response = protocol_build_alert(msg.args[0], alert_msg);
+								if (alertas_disparadas > 0) {
+									response = protocol_build_alert(msg.args[0], "Umbral superado");
 								}
 							}
                         } else {
@@ -137,10 +138,20 @@ static void *handle_client(void *arg) {
 
                 case CMD_LOGIN:
                     if (msg.argc >= 2) {
-                        // Por ahora simulamos autenticación (más adelante usaremos auth_client)
-                        response = protocol_build_ok("ROLE_OPERATOR");
+                        char role[64] = {0};
+                        int auth_result = auth_client_verify(msg.args[0], msg.args[1], role, sizeof(role));
+
+                        if (auth_result == 1) {
+                            char ok_msg[128];
+                            snprintf(ok_msg, sizeof(ok_msg), "ROLE_%s", role);
+                            response = protocol_build_ok(ok_msg);
+                        } else if (auth_result == 0) {
+                            response = protocol_build_error("401", "Invalid credentials");
+                        } else {
+                            response = protocol_build_error("503", "Auth service unavailable");
+                        }
                     } else {
-                        response = protocol_build_error("401", "Invalid credentials");
+                        response = protocol_build_error("400", "Missing arguments");
                     }
                     break;
 
@@ -268,7 +279,10 @@ int start_server(int port, const char *log_file) {
 	}
 
 	snprintf(message, sizeof(message), "Server listening on port %d", port);
-	logger_info(message);
+    logger_info(message);
+
+    sensor_manager_init();
+	alert_engine_register_threshold("temperatura", 30.0, 2, ">", "Temperatura muy alta");
 
 	while (1) {
 		int client_fd;
