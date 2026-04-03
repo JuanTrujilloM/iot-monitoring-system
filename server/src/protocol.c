@@ -35,6 +35,7 @@ int protocol_parse(const char* buffer, int bytes_received, ParsedMessage_t* msg)
     else if (strcasecmp(token, "GET_STATUS") == 0)   msg->type = CMD_GET_STATUS;
     else if (strcasecmp(token, "GET_ALERTS") == 0)   msg->type = CMD_GET_ALERTS;
     else if (strcasecmp(token, "PING") == 0)         msg->type = CMD_PING;
+    else if (strcasecmp(token, "OPERATOR_IDENTIFY") == 0) msg->type = CMD_OPERATOR_IDENTIFY;
 
     while ((token = strtok(NULL, " ")) && msg->argc < MAX_ARGS) {
         msg->args[msg->argc++] = token;

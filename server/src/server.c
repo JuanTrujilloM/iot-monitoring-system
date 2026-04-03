@@ -153,6 +153,12 @@ static void *handle_client(void *arg) {
                     }
                     break;
 
+                case CMD_OPERATOR_IDENTIFY:
+                    /* Operador confirmando su rol como supervisor en tiempo real */
+                    response = protocol_build_ok("OPERATOR_CONNECTED");
+                    logger_event("INFO", client_ip, client_port, "OPERATOR_IDENTIFY", "Operator supervisor connected");
+                    break;
+
                 case CMD_GET_SENSORS:
                 {
                     char sensors_list[1024] = {0};
