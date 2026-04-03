@@ -130,6 +130,21 @@ int sensor_manager_is_sensor_registered(const char* sensor_id)
     return 0;
 }
 
+const char* sensor_manager_get_sensor_type(const char* sensor_id)
+{
+    if (!sensor_id) return NULL;
+
+    pthread_mutex_lock(&sensor_mutex);
+    for (int i = 0; i < sensor_count; i++) {
+        if (strcmp(sensors[i].id, sensor_id) == 0) {
+            pthread_mutex_unlock(&sensor_mutex);
+            return sensors[i].type;
+        }
+    }
+    pthread_mutex_unlock(&sensor_mutex);
+    return NULL;
+}
+
 void sensor_manager_cleanup(void)
 {
     pthread_mutex_lock(&sensor_mutex);

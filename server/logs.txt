@@ -89,3 +89,13 @@
 
 [2026-04-03 00:27:43] [INFO][Thread 6139457536] IP=127.0.0.1 Port=52083 Message=Receive error or timeout Response=
 [2026-04-03 00:28:39] [INFO][Thread 6138884096] IP=127.0.0.1 Port=52099 Message=Receive error or timeout Response=
+[2026-04-03 01:42:34] [INFO][Thread 8350899968] Server listening on port 8080
+[2026-04-03 01:42:38] [INFO][Thread 8350899968] IP=127.0.0.1 Port=52550 Message=Incoming connection Response=
+[2026-04-03 01:42:38] [INFO][Thread 6159822848] IP=127.0.0.1 Port=52550 Message=Connection started Response=type=unknown
+[2026-04-03 01:43:13] [INFO][Thread 6159822848] Sensor registered: s1 (temp)
+[2026-04-03 01:43:13] [INFO][Thread 6159822848] IP=127.0.0.1 Port=52550 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 01:43:52] [INFO][Thread 6159822848] Measurement from s1: 100.00 °C
+[2026-04-03 01:43:52] [INFO][Thread 6159822848] IP=127.0.0.1 Port=52550 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 01:44:52] [INFO][Thread 6159822848] IP=127.0.0.1 Port=52550 Message=Receive error or timeout Response=

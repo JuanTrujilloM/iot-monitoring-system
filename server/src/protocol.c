@@ -32,6 +32,7 @@ int protocol_parse(const char* buffer, int bytes_received, ParsedMessage_t* msg)
     else if (strcasecmp(token, "LOGIN") == 0)        msg->type = CMD_LOGIN;
     else if (strcasecmp(token, "GET_SENSORS") == 0)  msg->type = CMD_GET_SENSORS;
     else if (strcasecmp(token, "GET_STATUS") == 0)   msg->type = CMD_GET_STATUS;
+    else if (strcasecmp(token, "GET_ALERTS") == 0)   msg->type = CMD_GET_ALERTS;
     else if (strcasecmp(token, "PING") == 0)         msg->type = CMD_PING;
 
     while ((token = strtok(NULL, " ")) && msg->argc < MAX_ARGS) {
@@ -62,6 +63,12 @@ const char* protocol_build_alert(const char* sensor_id, const char* message)
 const char* protocol_build_sensors_list(const char* list_data)
 {
     snprintf(resp_buf, sizeof(resp_buf), "SENSORS %s\r\n", list_data ? list_data : "");
+    return resp_buf;
+}
+
+const char* protocol_build_alerts_list(const char* alerts_data)
+{
+    snprintf(resp_buf, sizeof(resp_buf), "ALERTS %s\r\n", alerts_data ? alerts_data : "");
     return resp_buf;
 }
 

@@ -2,6 +2,7 @@
 #include "logger.h"
 #include "protocol.h"
 #include "sensor_manager.h"
+#include "alert_engine.h"
 
 #ifdef _WIN32
 #include <winsock2.h>
@@ -70,7 +71,7 @@ static int send_complete_response(int client_fd, const char *response, const cha
 
 	return 0;
 }
-
+/*
 static int process_client_message(int client_fd, const char *client_ip, int client_port, char *buffer, int bytes_received, const char *response) {
 	buffer[bytes_received] = '\0';
 
@@ -81,6 +82,7 @@ static int process_client_message(int client_fd, const char *client_ip, int clie
 	logger_event("INFO", client_ip, client_port, buffer, response);
 	return 0;
 }
+*/
 
 static void *handle_client(void *arg) {
     client_context_t *context = (client_context_t *)arg;
@@ -128,7 +130,15 @@ static void *handle_client(void *arg) {
                         double value = atof(msg.args[1]);
                         if (sensor_manager_add_measurement(msg.args[0], value, msg.args[2]) == 0) {
                             response = protocol_build_ok("MEASUREMENT_RECEIVED");
-                            // Aquí más adelante llamaremos a alert_engine_check(...)
+                            // Check for alerts after adding measurement
+                            const char* sensor_type = sensor_manager_get_sensor_type(msg.args[0]);
+                            if (sensor_type) {
+								const char* alert_msg = alert_engine_check_measurement(msg.args[0], sensor_type, value);
+
+								if (alert_msg != NULL) {
+									response = protocol_build_alert(msg.args[0], alert_msg);
+								}
+							}
                         } else {
                             response = protocol_build_error("404", "Sensor not registered");
                         }
@@ -153,6 +163,17 @@ static void *handle_client(void *arg) {
                         response = protocol_build_sensors_list(sensors_list);
                     } else {
                         response = protocol_build_error("500", "Failed to get sensors");
+                    }
+                    break;
+                }
+
+                case CMD_GET_ALERTS:
+                {
+                    char alerts_list[1024] = {0};
+                    if (alert_engine_get_active_alerts(alerts_list, sizeof(alerts_list)) == 0) {
+                        response = protocol_build_alerts_list(alerts_list);
+                    } else {
+                        response = protocol_build_error("500", "Failed to get alerts");
                     }
                     break;
                 }

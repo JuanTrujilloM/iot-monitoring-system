@@ -18,6 +18,7 @@ int sensor_manager_register(const char* sensor_type, const char* sensor_id);
 int sensor_manager_add_measurement(const char* sensor_id, double value, const char* unit);
 int sensor_manager_get_active_sensors(char* output_buffer, int buffer_size);
 int sensor_manager_is_sensor_registered(const char* sensor_id);
+const char* sensor_manager_get_sensor_type(const char* sensor_id);
 void sensor_manager_cleanup(void);
 
 #endif
