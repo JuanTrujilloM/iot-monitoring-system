@@ -1,6 +1,8 @@
 #include "server.h"
 #include "logger.h"
 #include "protocol.h"
+#include "sensor_manager.h"
+#include "alert_engine.h"
 
 #ifdef _WIN32
 #include <winsock2.h>
@@ -88,20 +90,24 @@ static void *handle_client(void *arg) {
     while ((bytes_received = recv(client_fd, buffer, sizeof(buffer) - 1, 0)) > 0) {
 
         ParsedMessage_t msg;
-        const char *response = "ERROR 500 Unknown command\r\n";
+        const char *response = protocol_build_error("404", "Command not found");
 
-        // Parse the message using the protocol
+        // Parsear el mensaje con el protocolo
         if (protocol_parse(buffer, bytes_received, &msg) == 0) {
 
             switch (msg.type) {
+
                 case CMD_PING:
                     response = "PONG\r\n";
                     break;
 
                 case CMD_REGISTER_SENSOR:
                     if (msg.argc >= 2) {
-                        // Here, sensor_manager_register(...) will then be called
-                        response = protocol_build_ok("SENSOR_REGISTERED");
+                        if (sensor_manager_register(msg.args[0], msg.args[1]) == 0) {
+                            response = protocol_build_ok("SENSOR_REGISTERED");
+                        } else {
+                            response = protocol_build_error("500", "Failed to register sensor");
+                        }
                     } else {
                         response = protocol_build_error("400", "Missing arguments");
                     }
@@ -109,9 +115,21 @@ static void *handle_client(void *arg) {
 
                 case CMD_MEASUREMENT:
                     if (msg.argc >= 3) {
-                        // Here, sensor_manager_add_measurement(...) will then be called
-                        // and to alert_engine_check(...)
-                        response = protocol_build_ok("MEASUREMENT_RECEIVED");
+                        double value = atof(msg.args[1]);
+                        if (sensor_manager_add_measurement(msg.args[0], value, msg.args[2]) == 0) {
+                            response = protocol_build_ok("MEASUREMENT_RECEIVED");
+                            // Check for alerts after adding measurement
+                            const char* sensor_type = sensor_manager_get_sensor_type(msg.args[0]);
+                            if (sensor_type) {
+								const char* alert_msg = alert_engine_check_measurement(msg.args[0], sensor_type, value);
+
+								if (alert_msg != NULL) {
+									response = protocol_build_alert(msg.args[0], alert_msg);
+								}
+							}
+                        } else {
+                            response = protocol_build_error("404", "Sensor not registered");
+                        }
                     } else {
                         response = protocol_build_error("400", "Missing arguments");
                     }
@@ -119,7 +137,7 @@ static void *handle_client(void *arg) {
 
                 case CMD_LOGIN:
                     if (msg.argc >= 2) {
-                        // Here, auth_client.c will then be called.
+                        // Por ahora simulamos autenticación (más adelante usaremos auth_client)
                         response = protocol_build_ok("ROLE_OPERATOR");
                     } else {
                         response = protocol_build_error("401", "Invalid credentials");
@@ -127,13 +145,35 @@ static void *handle_client(void *arg) {
                     break;
 
                 case CMD_GET_SENSORS:
-                    // Here, sensor_manager_get_list(...) will then be called
-                    response = protocol_build_sensors_list("sensor-temp-001,temp,45.3,°C;sensor-vib-002,vib,12.5,mm/s");
+                {
+                    char sensors_list[1024] = {0};
+                    if (sensor_manager_get_active_sensors(sensors_list, sizeof(sensors_list)) == 0) {
+                        response = protocol_build_sensors_list(sensors_list);
+                    } else {
+                        response = protocol_build_error("500", "Failed to get sensors");
+                    }
                     break;
+                }
+
+                case CMD_GET_ALERTS:
+                {
+                    char alerts_list[1024] = {0};
+                    if (alert_engine_get_active_alerts(alerts_list, sizeof(alerts_list)) == 0) {
+                        response = protocol_build_alerts_list(alerts_list);
+                    } else {
+                        response = protocol_build_error("500", "Failed to get alerts");
+                    }
+                    break;
+                }
 
                 case CMD_GET_STATUS:
-                    response = protocol_build_status("5 sensors active - System OK");
+                {
+                    char status_text[128];
+                    // Por ahora usamos un valor fijo (más adelante podemos contar sensores reales)
+                    snprintf(status_text, sizeof(status_text), "%d sensors active - System OK", 5);
+                    response = protocol_build_status(status_text);
                     break;
+                }
 
                 default:
                     response = protocol_build_error("404", "Command not found");
@@ -141,15 +181,15 @@ static void *handle_client(void *arg) {
             }
         }
 
-        // Send response and log
+        // Enviar respuesta y registrar en log
         if (send_complete_response(client_fd, response, client_ip, client_port, msg.raw_buffer) == 0) {
             logger_event("INFO", client_ip, client_port, msg.raw_buffer, response);
         } else {
-            break;  // Error sending → Close connection
+            break;  // Error al enviar → cerrar conexión
         }
     }
 
-    // The client disconnected or there was an error
+    // Cliente se desconectó o hubo error
     if (bytes_received == 0) {
         logger_event("INFO", client_ip, client_port, "Client disconnected", "");
     } else {

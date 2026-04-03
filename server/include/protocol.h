@@ -11,6 +11,7 @@ typedef enum {
     CMD_LOGIN,
     CMD_GET_SENSORS,
     CMD_GET_STATUS,
+    CMD_GET_ALERTS,
     CMD_PING
 } CommandType;
 
@@ -29,6 +30,7 @@ const char* protocol_build_ok(const char* details);
 const char* protocol_build_error(const char* code, const char* desc);
 const char* protocol_build_alert(const char* sensor_id, const char* message);
 const char* protocol_build_sensors_list(const char* list_data);
+const char* protocol_build_alerts_list(const char* alerts_data);
 const char* protocol_build_status(const char* status_text);
 
 /* Detectar si es petición HTTP (para la interfaz web) */
