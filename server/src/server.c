@@ -104,7 +104,7 @@ static void *handle_client(void *arg) {
 
                 case CMD_REGISTER_SENSOR:
                     if (msg.argc >= 2) {
-                        if (sensor_manager_register(msg.args[0], msg.args[1]) == 0) {
+                        if (sensor_manager_register(msg.args[1], msg.args[0]) == 0) {
                             response = protocol_build_ok("SENSOR_REGISTERED");
                         } else {
                             response = protocol_build_error("500", "Failed to register sensor");
@@ -119,11 +119,9 @@ static void *handle_client(void *arg) {
                         double value = atof(msg.args[1]);
                         if (sensor_manager_add_measurement(msg.args[0], value, msg.args[2]) == 0) {
                             response = protocol_build_ok("MEASUREMENT_RECEIVED");
-                            // Check for alerts after adding measurement
                             const char* sensor_type = sensor_manager_get_sensor_type(msg.args[0]);
                             if (sensor_type) {
 								int alertas_disparadas = alert_engine_check_measurement(msg.args[0], sensor_type, value);
-
 								if (alertas_disparadas > 0) {
 									response = protocol_build_alert(msg.args[0], "Umbral superado");
 								}
@@ -286,6 +284,9 @@ int start_server(int port, const char *log_file) {
 
 	snprintf(message, sizeof(message), "Server listening on port %d", port);
     logger_info(message);
+
+    sensor_manager_init();
+	alert_engine_register_threshold("temperature", 30.0, 2, ">", "High temperature alert");
 
 	while (1) {
 		int client_fd;

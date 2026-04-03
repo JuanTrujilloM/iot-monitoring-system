@@ -486,3 +486,582 @@
 [2026-04-03 17:42:43] [INFO][Thread 276200446488960] IP=172.18.0.1 Port=35120 Message=Client disconnected Response=
 [2026-04-03 17:42:45] [INFO][Thread 276200454943104] IP=172.18.0.1 Port=43832 Message=Client disconnected Response=
 [2026-04-03 17:42:45] [INFO][Thread 276200463397248] IP=172.18.0.1 Port=43830 Message=Client disconnected Response=
+[2026-04-03 22:24:17] [INFO][Thread 275806344183840] Server listening on port 8080
+[2026-04-03 22:24:17] [INFO][Thread 275806344183840] Sensor manager initialized
+[2026-04-03 22:24:17] [INFO][Thread 275806344183840] Alert threshold registered for temperature: > 30.00
+[2026-04-03 22:25:03] [INFO][Thread 275806344183840] IP=172.18.0.1 Port=34788 Message=Incoming connection Response=
+[2026-04-03 22:25:03] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=34788 Message=Connection started Response=type=unknown
+[2026-04-03 22:25:03] [INFO][Thread 275806342148480] Sensor registered: energy (energy-01)
+[2026-04-03 22:25:03] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=34788 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:25:03] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:25:03] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=34788 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:25:08] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:25:08] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=34788 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:25:13] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:25:13] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=34788 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:25:18] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:25:18] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=34788 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:25:23] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:25:23] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=34788 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:25:28] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:25:28] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=34788 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:25:33] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:25:33] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=34788 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:25:38] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:25:38] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=34788 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:25:39] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=34788 Message=Client disconnected Response=
+[2026-04-03 22:25:39] [INFO][Thread 275806344183840] IP=172.18.0.1 Port=38324 Message=Incoming connection Response=
+[2026-04-03 22:25:39] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=38324 Message=Connection started Response=type=unknown
+[2026-04-03 22:25:39] [INFO][Thread 275806342148480] Sensor registered: vibration (vib-01)
+[2026-04-03 22:25:39] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=38324 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:25:39] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:25:39] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=38324 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:25:44] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:25:44] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=38324 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:25:44] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=38324 Message=Client disconnected Response=
+[2026-04-03 22:26:08] [INFO][Thread 275806344183840] IP=172.18.0.1 Port=40274 Message=Incoming connection Response=
+[2026-04-03 22:26:08] [INFO][Thread 275806344183840] IP=172.18.0.1 Port=40272 Message=Incoming connection Response=
+[2026-04-03 22:26:08] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=40274 Message=Connection started Response=type=unknown
+[2026-04-03 22:26:08] [INFO][Thread 275806333694336] IP=172.18.0.1 Port=40272 Message=Connection started Response=type=unknown
+[2026-04-03 22:26:08] [INFO][Thread 275806333694336] IP=0.0.0.0 Port=0 Message=Sensor already registered Response=temperature
+[2026-04-03 22:26:08] [INFO][Thread 275806342148480] Sensor registered: temperature (SENS-DOCKER-1)
+[2026-04-03 22:26:08] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=40274 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:26:08] [INFO][Thread 275806333694336] IP=172.18.0.1 Port=40272 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:26:08] [ERROR][Thread 275806333694336] Measurement received from unregistered sensor
+[2026-04-03 22:26:08] [INFO][Thread 275806333694336] IP=172.18.0.1 Port=40272 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:26:08] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:26:08] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=40274 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:26:13] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:26:13] [ERROR][Thread 275806333694336] Measurement received from unregistered sensor
+[2026-04-03 22:26:13] [INFO][Thread 275806333694336] IP=172.18.0.1 Port=40272 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:26:13] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=40274 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:26:18] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:26:18] [ERROR][Thread 275806333694336] Measurement received from unregistered sensor
+[2026-04-03 22:26:18] [INFO][Thread 275806333694336] IP=172.18.0.1 Port=40272 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:26:18] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=40274 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:26:23] [ERROR][Thread 275806333694336] Measurement received from unregistered sensor
+[2026-04-03 22:26:23] [INFO][Thread 275806333694336] IP=172.18.0.1 Port=40272 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:26:23] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=40274 Message=MEASUREMENT Response=ERROR 400 Missing arguments
+
+[2026-04-03 22:26:28] [ERROR][Thread 275806342148480] Measurement received from unregistered sensor
+[2026-04-03 22:26:28] [INFO][Thread 275806342148480] IP=172.18.0.1 Port=40274 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:26:28] [ERROR][Thread 275806333694336] Measurement received from unregistered sensor
+[2026-04-03 22:26:28] [INFO][Thread 275806333694336] IP=172.18.0.1 Port=40272 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:26:47] [INFO][Thread 265896755044384] Server listening on port 8080
+[2026-04-03 22:26:47] [INFO][Thread 265896755044384] Sensor manager initialized
+[2026-04-03 22:26:47] [INFO][Thread 265896755044384] Alert threshold registered for temperature: > 30.00
+[2026-04-03 22:26:53] [INFO][Thread 265896755044384] IP=172.18.0.1 Port=40342 Message=Incoming connection Response=
+[2026-04-03 22:26:53] [INFO][Thread 265896755044384] IP=172.18.0.1 Port=40340 Message=Incoming connection Response=
+[2026-04-03 22:26:53] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=Connection started Response=type=unknown
+[2026-04-03 22:26:53] [INFO][Thread 265896752968064] Sensor registered: temperature (SENS-DOCKER-1)
+[2026-04-03 22:26:53] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=Connection started Response=type=unknown
+[2026-04-03 22:26:53] [INFO][Thread 265896744513920] IP=0.0.0.0 Port=0 Message=Sensor already registered Response=temperature
+[2026-04-03 22:26:53] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:26:53] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:26:53] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:26:53] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:26:53] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:26:53] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:26:58] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:26:58] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:26:58] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:26:58] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:03] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=MEASUREMENT Response=ERROR 400 Missing arguments
+
+[2026-04-03 22:27:03] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:27:03] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:08] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:27:08] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:08] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:27:08] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:13] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:27:13] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:13] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:27:13] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:18] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:27:18] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:18] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:27:18] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:23] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:27:23] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:23] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:27:23] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:28] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:27:28] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:28] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:27:28] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:33] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:27:33] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:33] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:27:33] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:38] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:27:38] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:38] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:27:38] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:43] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:27:43] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:43] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:27:43] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:46] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=40342 Message=Client disconnected Response=
+[2026-04-03 22:27:46] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=40340 Message=Client disconnected Response=
+[2026-04-03 22:27:53] [INFO][Thread 265896755044384] IP=172.18.0.1 Port=34590 Message=Incoming connection Response=
+[2026-04-03 22:27:53] [INFO][Thread 265896755044384] IP=172.18.0.1 Port=34588 Message=Incoming connection Response=
+[2026-04-03 22:27:53] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=Connection started Response=type=unknown
+[2026-04-03 22:27:53] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=Connection started Response=type=unknown
+[2026-04-03 22:27:53] [INFO][Thread 265896752968064] IP=0.0.0.0 Port=0 Message=Sensor already registered Response=temperature
+[2026-04-03 22:27:53] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:27:53] [INFO][Thread 265896744513920] IP=0.0.0.0 Port=0 Message=Sensor already registered Response=temperature
+[2026-04-03 22:27:53] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:27:53] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:53] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:27:53] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:27:53] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:58] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:27:58] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:27:58] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:27:58] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:03] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:28:03] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 400 Missing arguments
+
+[2026-04-03 22:28:03] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:08] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:28:08] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:08] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:28:08] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:13] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:28:13] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:13] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:28:13] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:18] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:28:18] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:18] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 400 Missing arguments
+
+[2026-04-03 22:28:23] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:28:23] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 400 Missing arguments
+
+[2026-04-03 22:28:23] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:28] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:28:28] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:28] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:28:28] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:33] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:28:33] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:33] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:28:33] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:38] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:28:38] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:38] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:28:38] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:43] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:28:43] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:43] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:28:43] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:48] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:28:48] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:48] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:28:48] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:53] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:28:53] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:53] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:28:53] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:58] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:28:58] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:28:58] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:28:58] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:03] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:29:03] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:03] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:29:03] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:08] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:29:08] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:08] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:29:08] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:13] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:29:13] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:13] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:29:13] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:18] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:29:18] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:18] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:29:18] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:23] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:29:23] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:23] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:29:23] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:28] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:29:28] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:28] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:29:28] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:33] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:29:33] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:33] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:29:33] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:38] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:29:38] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:38] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:29:38] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:43] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:29:43] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:43] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:29:43] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:48] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:29:48] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:48] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:29:48] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:53] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:29:53] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:53] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:29:53] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:58] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:29:58] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:29:58] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:29:58] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:03] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:30:03] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:03] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:30:03] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:08] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:30:08] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:08] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:30:08] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:13] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:30:13] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:13] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:30:13] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:18] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:30:18] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:18] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:30:18] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:23] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:30:23] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:23] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:30:23] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:28] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:30:28] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:28] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:30:28] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:33] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:30:33] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:33] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:30:33] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:38] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:30:38] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:38] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:30:38] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:43] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:30:43] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:43] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:30:43] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:48] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:30:48] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 400 Missing arguments
+
+[2026-04-03 22:30:48] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:53] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:30:53] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:30:53] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:53] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:30:58] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:30:58] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 400 Missing arguments
+
+[2026-04-03 22:30:58] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:31:03] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:31:03] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:31:03] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:31:03] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:31:08] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:31:08] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 400 Missing arguments
+
+[2026-04-03 22:31:08] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:31:13] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:31:13] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 400 Missing arguments
+
+[2026-04-03 22:31:13] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:31:18] [ERROR][Thread 265896744513920] Measurement received from unregistered sensor
+[2026-04-03 22:31:18] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:31:18] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:31:18] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:31:23] [ERROR][Thread 265896752968064] Measurement received from unregistered sensor
+[2026-04-03 22:31:23] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 22:31:23] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=MEASUREMENT Response=ERROR 400 Missing arguments
+
+[2026-04-03 22:31:24] [INFO][Thread 265896744513920] IP=172.18.0.1 Port=34590 Message=Client disconnected Response=
+[2026-04-03 22:31:24] [INFO][Thread 265896752968064] IP=172.18.0.1 Port=34588 Message=Client disconnected Response=
+[2026-04-03 22:31:58] [INFO][Thread 280970340163616] Server listening on port 8080
+[2026-04-03 22:31:58] [INFO][Thread 280970340163616] Sensor manager initialized
+[2026-04-03 22:31:58] [INFO][Thread 280970340163616] Alert threshold registered for temperature: > 30.00
+[2026-04-03 22:32:03] [INFO][Thread 280970340163616] IP=172.18.0.1 Port=60074 Message=Incoming connection Response=
+[2026-04-03 22:32:03] [INFO][Thread 280970340163616] IP=172.18.0.1 Port=60072 Message=Incoming connection Response=
+[2026-04-03 22:32:03] [INFO][Thread 280970338103680] IP=172.18.0.1 Port=60074 Message=Connection started Response=type=unknown
+[2026-04-03 22:32:03] [INFO][Thread 280970338103680] Sensor registered: SENS-DOCKER-1 (temperature)
+[2026-04-03 22:32:03] [INFO][Thread 280970329649536] IP=172.18.0.1 Port=60072 Message=Connection started Response=type=unknown
+[2026-04-03 22:32:03] [INFO][Thread 280970329649536] Sensor registered: SENS-DOCKER-2 (temperature)
+[2026-04-03 22:32:03] [INFO][Thread 280970329649536] IP=172.18.0.1 Port=60072 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:32:03] [INFO][Thread 280970338103680] IP=172.18.0.1 Port=60074 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:32:03] [INFO][Thread 280970338103680] Measurement from SENS-DOCKER-1: 18.53 C
+[2026-04-03 22:32:03] [INFO][Thread 280970329649536] Measurement from SENS-DOCKER-2: 27.17 C
+[2026-04-03 22:32:03] [INFO][Thread 280970338103680] IP=172.18.0.1 Port=60074 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:32:03] [INFO][Thread 280970329649536] IP=172.18.0.1 Port=60072 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:32:08] [INFO][Thread 280970329649536] Measurement from SENS-DOCKER-2: 27.64 C
+[2026-04-03 22:32:08] [INFO][Thread 280970338103680] Measurement from SENS-DOCKER-1: 22.88 C
+[2026-04-03 22:32:08] [INFO][Thread 280970338103680] IP=172.18.0.1 Port=60074 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:32:08] [INFO][Thread 280970329649536] IP=172.18.0.1 Port=60072 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:32:13] [INFO][Thread 280970329649536] Measurement from SENS-DOCKER-1: 26.40 C
+[2026-04-03 22:32:13] [INFO][Thread 280970329649536] IP=172.18.0.1 Port=60072 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:32:13] [INFO][Thread 280970338103680] IP=172.18.0.1 Port=60074 Message=MEASUREMENT Response=ERROR 400 Missing arguments
+
+[2026-04-03 22:32:18] [INFO][Thread 280970329649536] Measurement from SENS-DOCKER-1: 32.97 C
+[2026-04-03 22:32:18] [INFO][Thread 280970329649536] IP=172.18.0.1 Port=60072 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:32:18] [INFO][Thread 280970338103680] Measurement from SENS-DOCKER-1: 32.97 C
+[2026-04-03 22:32:18] [INFO][Thread 280970338103680] IP=172.18.0.1 Port=60074 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:32:23] [INFO][Thread 280970329649536] Measurement from SENS-DOCKER-2: 29.61 C
+[2026-04-03 22:32:23] [INFO][Thread 280970329649536] IP=172.18.0.1 Port=60072 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:32:23] [INFO][Thread 280970338103680] Measurement from SENS-DOCKER-1: 23.95 C
+[2026-04-03 22:32:23] [INFO][Thread 280970338103680] IP=172.18.0.1 Port=60074 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:32:28] [INFO][Thread 280970329649536] Measurement from SENS-DOCKER-2: 20.85 C
+[2026-04-03 22:32:28] [INFO][Thread 280970329649536] IP=172.18.0.1 Port=60072 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:32:28] [INFO][Thread 280970338103680] IP=172.18.0.1 Port=60074 Message=MEASUREMENT Response=ERROR 400 Missing arguments
+
+[2026-04-03 22:32:33] [INFO][Thread 280970338103680] Measurement from SENS-DOCKER-1: 22.63 C
+[2026-04-03 22:32:33] [INFO][Thread 280970338103680] IP=172.18.0.1 Port=60074 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:32:33] [INFO][Thread 280970329649536] Measurement from SENS-DOCKER-2: 31.10 C
+[2026-04-03 22:32:33] [INFO][Thread 280970329649536] IP=172.18.0.1 Port=60072 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:32:35] [INFO][Thread 280970329649536] IP=172.18.0.1 Port=60072 Message=Client disconnected Response=
+[2026-04-03 22:32:35] [INFO][Thread 280970338103680] IP=172.18.0.1 Port=60074 Message=Client disconnected Response=
+[2026-04-03 22:33:26] [INFO][Thread 263505202548768] Server listening on port 8080
+[2026-04-03 22:33:26] [INFO][Thread 263505202548768] Sensor manager initialized
+[2026-04-03 22:33:26] [INFO][Thread 263505202548768] Alert threshold registered for temperature: > 30.00
+[2026-04-03 22:33:33] [INFO][Thread 263505202548768] IP=172.18.0.1 Port=60380 Message=Incoming connection Response=
+[2026-04-03 22:33:33] [INFO][Thread 263505200476544] IP=172.18.0.1 Port=60380 Message=Connection started Response=type=unknown
+[2026-04-03 22:33:33] [INFO][Thread 263505200476544] Sensor registered: temp-01 (temperature)
+[2026-04-03 22:33:33] [INFO][Thread 263505200476544] IP=172.18.0.1 Port=60380 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:33:33] [INFO][Thread 263505200476544] Measurement from temp-01: 31.06 C
+[2026-04-03 22:33:33] [INFO][Thread 263505200476544] IP=172.18.0.1 Port=60380 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:33:38] [INFO][Thread 263505200476544] Measurement from temp-01: 22.73 C
+[2026-04-03 22:33:38] [INFO][Thread 263505200476544] IP=172.18.0.1 Port=60380 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:33:43] [INFO][Thread 263505200476544] Measurement from temp-01: 26.66 C
+[2026-04-03 22:33:43] [INFO][Thread 263505200476544] IP=172.18.0.1 Port=60380 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:33:48] [INFO][Thread 263505200476544] Measurement from temp-01: 22.25 C
+[2026-04-03 22:33:48] [INFO][Thread 263505200476544] IP=172.18.0.1 Port=60380 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:33:53] [INFO][Thread 263505200476544] Measurement from temp-01: 30.52 C
+[2026-04-03 22:33:53] [INFO][Thread 263505200476544] IP=172.18.0.1 Port=60380 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:33:58] [INFO][Thread 263505200476544] Measurement from temp-01: 26.53 C
+[2026-04-03 22:33:58] [INFO][Thread 263505200476544] IP=172.18.0.1 Port=60380 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:34:02] [INFO][Thread 263505200476544] IP=172.18.0.1 Port=60380 Message=Client disconnected Response=
+[2026-04-03 22:34:28] [INFO][Thread 263505202548768] IP=172.18.0.1 Port=50188 Message=Incoming connection Response=
+[2026-04-03 22:34:28] [INFO][Thread 263505200476544] IP=172.18.0.1 Port=50188 Message=Connection started Response=type=unknown
+[2026-04-03 22:34:28] [INFO][Thread 263505200476544] IP=0.0.0.0 Port=0 Message=Sensor already registered Response=temp-01
+[2026-04-03 22:34:28] [INFO][Thread 263505200476544] IP=172.18.0.1 Port=50188 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:34:28] [INFO][Thread 263505200476544] Measurement from temp-01: 17.42 C
+[2026-04-03 22:34:28] [INFO][Thread 263505200476544] IP=172.18.0.1 Port=50188 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:34:42] [INFO][Thread 247963781222432] Server listening on port 8080
+[2026-04-03 22:34:42] [INFO][Thread 247963781222432] Sensor manager initialized
+[2026-04-03 22:34:42] [INFO][Thread 247963781222432] Alert threshold registered for temperature: > 30.00
+[2026-04-03 22:34:43] [INFO][Thread 247963781222432] IP=172.18.0.1 Port=41068 Message=Incoming connection Response=
+[2026-04-03 22:34:43] [INFO][Thread 247963779133824] IP=172.18.0.1 Port=41068 Message=Connection started Response=type=unknown
+[2026-04-03 22:34:43] [INFO][Thread 247963779133824] Sensor registered: temp-01 (temperature)
+[2026-04-03 22:34:43] [INFO][Thread 247963779133824] IP=172.18.0.1 Port=41068 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:34:43] [INFO][Thread 247963779133824] Measurement from temp-01: 12.47 C
+[2026-04-03 22:34:43] [INFO][Thread 247963779133824] IP=172.18.0.1 Port=41068 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:34:48] [INFO][Thread 247963779133824] Measurement from temp-01: 26.47 C
+[2026-04-03 22:34:48] [INFO][Thread 247963779133824] IP=172.18.0.1 Port=41068 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:34:53] [INFO][Thread 247963779133824] Measurement from temp-01: 22.82 C
+[2026-04-03 22:34:53] [INFO][Thread 247963779133824] IP=172.18.0.1 Port=41068 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:34:55] [INFO][Thread 247963779133824] IP=172.18.0.1 Port=41068 Message=Client disconnected Response=
+[2026-04-03 22:47:19] [INFO][Thread 249203244044320] Server listening on port 8080
+[2026-04-03 22:47:19] [INFO][Thread 249203244044320] Sensor manager initialized
+[2026-04-03 22:47:19] [INFO][Thread 249203244044320] Alert threshold registered for temperature: > 30.00
+[2026-04-03 22:47:23] [INFO][Thread 249203244044320] IP=172.18.0.1 Port=53942 Message=Incoming connection Response=
+[2026-04-03 22:47:23] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=Connection started Response=type=unknown
+[2026-04-03 22:47:23] [INFO][Thread 249203241972096] Sensor registered: temp-01 (temperature)
+[2026-04-03 22:47:23] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:47:23] [INFO][Thread 249203241972096] Measurement from temp-01: 24.76 C
+[2026-04-03 22:47:23] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:47:28] [INFO][Thread 249203241972096] Measurement from temp-01: 31.73 C
+[2026-04-03 22:47:28] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:47:33] [INFO][Thread 249203241972096] Measurement from temp-01: 20.22 C
+[2026-04-03 22:47:33] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:47:38] [INFO][Thread 249203241972096] Measurement from temp-01: 34.19 C
+[2026-04-03 22:47:38] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:47:43] [INFO][Thread 249203241972096] Measurement from temp-01: 33.86 C
+[2026-04-03 22:47:43] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:47:48] [INFO][Thread 249203241972096] Measurement from temp-01: 30.33 C
+[2026-04-03 22:47:48] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:47:53] [INFO][Thread 249203241972096] Measurement from temp-01: 20.54 C
+[2026-04-03 22:47:53] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:47:58] [INFO][Thread 249203241972096] Measurement from temp-01: 23.66 C
+[2026-04-03 22:47:58] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:48:03] [INFO][Thread 249203241972096] Measurement from temp-01: 25.13 C
+[2026-04-03 22:48:03] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:48:08] [INFO][Thread 249203241972096] Measurement from temp-01: 33.11 C
+[2026-04-03 22:48:08] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:48:13] [INFO][Thread 249203241972096] Measurement from temp-01: 24.45 C
+[2026-04-03 22:48:13] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:48:18] [INFO][Thread 249203241972096] Measurement from temp-01: 25.78 C
+[2026-04-03 22:48:18] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:48:21] [INFO][Thread 249203241972096] IP=172.18.0.1 Port=53942 Message=Client disconnected Response=
