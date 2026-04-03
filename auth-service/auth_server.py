@@ -1,7 +1,7 @@
 import socket
 import sqlite3
 
-HOST = '127.0.0.1'
+HOST = '0.0.0.0'
 PORT = 9000
 
 def verify_user(username, password):

@@ -1,0 +1,11 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY auth-service/auth_server.py auth-service/init_db.py ./
+
+RUN python3 init_db.py
+
+EXPOSE 9000
+
+CMD ["python3", "auth_server.py"]
