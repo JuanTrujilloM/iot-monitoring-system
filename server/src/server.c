@@ -70,17 +70,6 @@ static int send_complete_response(int client_fd, const char *response, const cha
 	return 0;
 }
 
-static int process_client_message(int client_fd, const char *client_ip, int client_port, char *buffer, int bytes_received, const char *response) {
-	buffer[bytes_received] = '\0';
-
-	if (send_complete_response(client_fd, response, client_ip, client_port, buffer) != 0) {
-		return -1;
-	}
-
-	logger_event("INFO", client_ip, client_port, buffer, response);
-	return 0;
-}
-
 static void *handle_client(void *arg) {
     client_context_t *context = (client_context_t *)arg;
     int client_fd = context->client_fd;
