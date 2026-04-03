@@ -17,3 +17,75 @@
 [2026-04-02 21:56:23] [INFO][Thread 6162313216] IP=127.0.0.1 Port=51346 Message=PONG Response=ERROR 404 Command not found
 
 [2026-04-02 21:57:23] [INFO][Thread 6162313216] IP=127.0.0.1 Port=51346 Message=Receive error or timeout Response=
+[2026-04-02 23:43:27] [INFO][Thread 8350899968] Server listening on port 8080
+[2026-04-02 23:43:46] [INFO][Thread 8350899968] IP=127.0.0.1 Port=51930 Message=Incoming connection Response=
+[2026-04-02 23:43:46] [INFO][Thread 6099054592] IP=127.0.0.1 Port=51930 Message=Connection started Response=type=unknown
+[2026-04-02 23:44:01] [INFO][Thread 6099054592] IP=127.0.0.1 Port=51930 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-02 23:44:24] [INFO][Thread 6099054592] IP=127.0.0.1 Port=51930 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-02 23:44:42] [INFO][Thread 6099054592] IP=127.0.0.1 Port=51930 Message=GET_SENSORS Response=SENSORS sensor-temp-001,temp,45.3,°C;sensor-vib-002,vib,12.5,mm/s
+
+[2026-04-02 23:44:57] [INFO][Thread 6099054592] IP=127.0.0.1 Port=51930 Message=GET_STATUS Response=STATUS 5 sensors active - System OK
+
+[2026-04-02 23:45:57] [INFO][Thread 6099054592] IP=127.0.0.1 Port=51930 Message=Receive error or timeout Response=
+[2026-04-03 00:05:48] [INFO][Thread 8350899968] Server listening on port 8080
+[2026-04-03 00:05:53] [INFO][Thread 8350899968] IP=127.0.0.1 Port=52010 Message=Incoming connection Response=
+[2026-04-03 00:05:53] [INFO][Thread 6099677184] IP=127.0.0.1 Port=52010 Message=Connection started Response=type=unknown
+[2026-04-03 00:06:24] [INFO][Thread 6099677184] Sensor registered: temp (s1)
+[2026-04-03 00:06:24] [INFO][Thread 6099677184] IP=127.0.0.1 Port=52010 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 00:06:41] [ERROR][Thread 6099677184] Measurement received from unregistered sensor
+[2026-04-03 00:06:41] [INFO][Thread 6099677184] IP=127.0.0.1 Port=52010 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 00:07:21] [ERROR][Thread 6099677184] Measurement received from unregistered sensor
+[2026-04-03 00:07:21] [INFO][Thread 6099677184] IP=127.0.0.1 Port=52010 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 00:08:21] [INFO][Thread 6099677184] IP=127.0.0.1 Port=52010 Message=Receive error or timeout Response=
+[2026-04-03 00:11:26] [INFO][Thread 8350899968] Server listening on port 8080
+[2026-04-03 00:11:34] [INFO][Thread 8350899968] IP=127.0.0.1 Port=52024 Message=Incoming connection Response=
+[2026-04-03 00:11:34] [INFO][Thread 6134493184] IP=127.0.0.1 Port=52024 Message=Connection started Response=type=unknown
+[2026-04-03 00:11:50] [INFO][Thread 6134493184] Sensor registered: s1 (temp)
+[2026-04-03 00:11:50] [INFO][Thread 6134493184] IP=127.0.0.1 Port=52024 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 00:12:03] [INFO][Thread 6134493184] Measurement from s1: 42.50 °C
+[2026-04-03 00:12:03] [INFO][Thread 6134493184] IP=127.0.0.1 Port=52024 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 00:12:15] [INFO][Thread 6134493184] IP=127.0.0.1 Port=52024 Message=GET_SENSORS Response=SENSORS s1,temp,42.50,°C;
+
+[2026-04-03 00:12:22] [INFO][Thread 6134493184] IP=127.0.0.1 Port=52024 Message=GET_STATUS Response=STATUS 5 sensors active - System OK
+
+[2026-04-03 00:12:42] [INFO][Thread 6134493184] IP=127.0.0.1 Port=52024 Message=Client disconnected Response=
+[2026-04-03 00:24:47] [INFO][Thread 8350899968] Server listening on port 8080
+[2026-04-03 00:24:52] [INFO][Thread 8350899968] IP=127.0.0.1 Port=52079 Message=Incoming connection Response=
+[2026-04-03 00:24:52] [INFO][Thread 6138884096] IP=127.0.0.1 Port=52079 Message=Connection started Response=type=unknown
+[2026-04-03 00:25:06] [INFO][Thread 6138884096] Sensor registered: s1 (temp)
+[2026-04-03 00:25:06] [INFO][Thread 6138884096] IP=127.0.0.1 Port=52079 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 00:25:34] [INFO][Thread 6138884096] Measurement from s1: 45.80 °C
+[2026-04-03 00:25:34] [INFO][Thread 6138884096] IP=127.0.0.1 Port=52079 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 00:25:52] [INFO][Thread 6138884096] Measurement from s1: 52.30 °C
+[2026-04-03 00:25:52] [INFO][Thread 6138884096] IP=127.0.0.1 Port=52079 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 00:26:07] [INFO][Thread 8350899968] IP=127.0.0.1 Port=52083 Message=Incoming connection Response=
+[2026-04-03 00:26:07] [INFO][Thread 6139457536] IP=127.0.0.1 Port=52083 Message=Connection started Response=type=unknown
+[2026-04-03 00:26:27] [INFO][Thread 6139457536] Sensor registered: s2 (vib)
+[2026-04-03 00:26:27] [INFO][Thread 6139457536] IP=127.0.0.1 Port=52083 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 00:26:43] [INFO][Thread 6139457536] Measurement from s2: 8.50 mm/s
+[2026-04-03 00:26:43] [INFO][Thread 6139457536] IP=127.0.0.1 Port=52083 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 00:26:52] [INFO][Thread 6138884096] IP=127.0.0.1 Port=52079 Message=Receive error or timeout Response=
+[2026-04-03 00:26:58] [INFO][Thread 8350899968] IP=127.0.0.1 Port=52099 Message=Incoming connection Response=
+[2026-04-03 00:26:58] [INFO][Thread 6138884096] IP=127.0.0.1 Port=52099 Message=Connection started Response=type=unknown
+[2026-04-03 00:27:13] [INFO][Thread 6138884096] IP=127.0.0.1 Port=52099 Message=LOGIN Response=OK ROLE_OPERATOR
+
+[2026-04-03 00:27:22] [INFO][Thread 6138884096] IP=127.0.0.1 Port=52099 Message=GET_SENSORS Response=SENSORS s1,temp,52.30,°C;s2,vib,8.50,mm/s;
+
+[2026-04-03 00:27:32] [INFO][Thread 6138884096] IP=127.0.0.1 Port=52099 Message=GET Response=ERROR 404 Command not found
+
+[2026-04-03 00:27:39] [INFO][Thread 6138884096] IP=127.0.0.1 Port=52099 Message=GET_STATUS Response=STATUS 5 sensors active - System OK
+
+[2026-04-03 00:27:43] [INFO][Thread 6139457536] IP=127.0.0.1 Port=52083 Message=Receive error or timeout Response=
+[2026-04-03 00:28:39] [INFO][Thread 6138884096] IP=127.0.0.1 Port=52099 Message=Receive error or timeout Response=
