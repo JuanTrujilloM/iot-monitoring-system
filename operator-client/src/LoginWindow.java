@@ -64,7 +64,7 @@ public class LoginWindow extends JFrame {
                 dispose();
                 openMainWindow();
             } else {
-                JOptionPane.showMessageDialog(this, "Credenciales inválidas", "Acceso Denegado", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Credenciales invalidas", "Acceso Denegado", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error de red", "Error", JOptionPane.ERROR_MESSAGE);
@@ -75,11 +75,18 @@ public class LoginWindow extends JFrame {
         try {
             MainWindow window = new MainWindow();
 
-            String sensorResponse = connection.fetchSensors();
-            window.getSensorPanel().updateSensorDisplay(connection.parseSensors(sensorResponse));
+            Timer timer = new Timer(2000, e -> {
+                try {
+                    String sensorResponse = connection.fetchSensors();
+                    window.getSensorPanel().updateSensorDisplay(connection.parseSensors(sensorResponse));
 
-            String alertResponse = connection.fetchAlerts();
-            window.getAlertPanel().updateAlertDisplay(connection.parseAlerts(alertResponse));
+                    String alertResponse = connection.fetchAlerts();
+                    window.getAlertPanel().updateAlertDisplay(connection.parseAlerts(alertResponse));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+            timer.start();
 
             window.setVisible(true);
         } catch (Exception ex) {

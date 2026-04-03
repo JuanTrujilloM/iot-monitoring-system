@@ -50,14 +50,22 @@ class SensorBase(ABC):
         return data.decode().strip()
 
     def _register(self):
-        self._send(f"REGISTER_SENSOR {self.sensor_id} {self.sensor_type}\r\n")
+        self._send(f"REGISTER_SENSOR {self.sensor_type} {self.sensor_id}\r\n")
         response = self._recv()
         if not response.startswith("OK"):
             raise ConnectionError(f"Registration rejected: {response}")
         print(f"[{self.sensor_id}] Registered as type '{self.sensor_type}'")
 
     def _send_measurement(self, value: float):
-        self._send(f"MEASUREMENT {self.sensor_id} {self.sensor_type} {value:.4f}\r\n")
+        unit = "U"
+        if self.sensor_type == "temperature":
+            unit = "C"
+        elif self.sensor_type == "energy":
+            unit = "W"
+        elif self.sensor_type == "vibration":
+            unit = "mm/s"
+            
+        self._send(f"MEASUREMENT {self.sensor_id} {value:.4f} {unit}\r\n")
         response = self._recv()
         if not response.startswith("OK"):
             print(f"[{self.sensor_id}] WARNING: unexpected response: {response}")
