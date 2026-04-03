@@ -8,31 +8,59 @@
 #include <netdb.h>
 
 int auth_client_verify(const char* username, const char* password, char* role_buffer, int buffer_size) {
-    int sock = 0;
+    int sock = -1;
     struct sockaddr_in serv_addr;
     struct hostent *server;
+    int connected = 0;
     
     // Declaración de variables que faltaban
     char request[256];
     char buffer[1024];
     int valread;
     
-    if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) return -1;
+    // Intentar primero nombre Docker y luego localhost para entorno local.
+    {
+        const char* auth_hosts[] = {"auth-service", "127.0.0.1"};
+        size_t i;
 
-    // Resolución del nombre del servicio en la red de Docker
-    server = gethostbyname("auth-service");
-    if (server == NULL) {
-        close(sock);
-        return -1;
+        for (i = 0; i < sizeof(auth_hosts) / sizeof(auth_hosts[0]); i++) {
+            if (sock >= 0) {
+                close(sock);
+                sock = -1;
+            }
+
+            sock = socket(AF_INET, SOCK_STREAM, 0);
+            if (sock < 0) {
+                return -1;
+            }
+
+            memset(&serv_addr, 0, sizeof(serv_addr));
+            serv_addr.sin_family = AF_INET;
+            serv_addr.sin_port = htons(9000);
+
+            if (strcmp(auth_hosts[i], "127.0.0.1") == 0) {
+                if (inet_pton(AF_INET, auth_hosts[i], &serv_addr.sin_addr) != 1) {
+                    continue;
+                }
+            } else {
+                server = gethostbyname(auth_hosts[i]);
+                if (server == NULL || server->h_addr_list == NULL || server->h_addr_list[0] == NULL) {
+                    continue;
+                }
+                memcpy(&serv_addr.sin_addr.s_addr, server->h_addr_list[0], server->h_length);
+            }
+
+            if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == 0) {
+                connected = 1;
+                break;
+            }
+        }
     }
 
-    memset(&serv_addr, 0, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(9000);
-    memcpy(&serv_addr.sin_addr.s_addr, server->h_addr, server->h_length);
-
-    if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
-        close(sock);
+    if (!connected) {
+        if (sock >= 0) {
+            close(sock);
+        }
         return -1;
     }
 

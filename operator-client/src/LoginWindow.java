@@ -3,6 +3,7 @@ package src;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class LoginWindow extends JFrame {
     private JTextField userField;
@@ -61,19 +62,56 @@ public class LoginWindow extends JFrame {
 
         try {
             if (connection.login(user, pass)) {
-                dispose();
-                openMainWindow();
-            } else {
-                JOptionPane.showMessageDialog(this, "Credenciales invalidas", "Acceso Denegado", JOptionPane.ERROR_MESSAGE);
+                String role = connection.getUserRole();
+                
+                // Enviar identificación como operador supervisor al servidor
+                try {
+                    if (connection.identifyAsOperator()) {
+                        JOptionPane.showMessageDialog(this, 
+                            "Conectado como operador supervisor: " + role.toUpperCase(), 
+                            "Autenticación Exitosa", 
+                            JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                        openMainWindow();
+                    }
+                } catch (IOException identifyError) {
+                    JOptionPane.showMessageDialog(this, 
+                        "Error al identificarse como operador: " + identifyError.getMessage(), 
+                        "Error de Identificación", 
+                        JOptionPane.ERROR_MESSAGE);
+                }
             }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error de red", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            // Capturar excepciones específicas de login
+            String errorMsg = ex.getMessage();
+            if (errorMsg != null && errorMsg.contains("Credenciales inválidas")) {
+                JOptionPane.showMessageDialog(this, 
+                    "Usuario o contraseña incorrectos", 
+                    "Acceso Denegado", 
+                    JOptionPane.ERROR_MESSAGE);
+            } else if (errorMsg != null && errorMsg.contains("no disponible")) {
+                JOptionPane.showMessageDialog(this, 
+                    "Servicio de autenticación no disponible.\nIntente más tarde.", 
+                    "Servicio Indisponible", 
+                    JOptionPane.WARNING_MESSAGE);
+            } else if (errorMsg != null && errorMsg.contains("No se pudo conectar")) {
+                JOptionPane.showMessageDialog(this, 
+                    "No se puede conectar al servidor.\nVerifique IP y puerto.", 
+                    "Error de Conexión", 
+                    JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, 
+                    "Error: " + (errorMsg != null ? errorMsg : "Error desconocido"), 
+                    "Error de Comunicación", 
+                    JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
     private void openMainWindow() {
         try {
             MainWindow window = new MainWindow();
+            final boolean[] errorMostrado = {false};
 
             Timer timer = new Timer(2000, e -> {
                 try {
@@ -82,8 +120,16 @@ public class LoginWindow extends JFrame {
 
                     String alertResponse = connection.fetchAlerts();
                     window.getAlertPanel().updateAlertDisplay(connection.parseAlerts(alertResponse));
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+                } catch (IOException ex) {
+                    ((Timer)e.getSource()).stop();
+                    if (!errorMostrado[0]) {
+                        errorMostrado[0] = true;
+                        JOptionPane.showMessageDialog(window,
+                            "Se perdió la conexión con el servidor.\n" +
+                            "La supervisión en tiempo real se detuvo.",
+                            "Conexión interrumpida",
+                            JOptionPane.WARNING_MESSAGE);
+                    }
                 }
             });
             timer.start();

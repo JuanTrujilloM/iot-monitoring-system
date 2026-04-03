@@ -12,7 +12,8 @@ typedef enum {
     CMD_GET_SENSORS,
     CMD_GET_STATUS,
     CMD_GET_ALERTS,
-    CMD_PING
+    CMD_PING,
+    CMD_OPERATOR_IDENTIFY
 } CommandType;
 
 typedef struct {
