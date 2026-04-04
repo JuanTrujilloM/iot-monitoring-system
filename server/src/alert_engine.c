@@ -40,15 +40,11 @@ int alert_engine_register_threshold(const char* sensor_type, double threshold, A
     strncpy(thresholds[threshold_count].sensor_type, sensor_type, 15);
     thresholds[threshold_count].sensor_type[15] = '\0';
 
+    strncpy(thresholds[threshold_count].sensor_type, sensor_type, sizeof(thresholds[0].sensor_type) - 1);
+    strncpy(thresholds[threshold_count].message, message, sizeof(thresholds[0].message) - 1);
     thresholds[threshold_count].threshold_value = threshold;
     thresholds[threshold_count].level = level;
-
-    strncpy(thresholds[threshold_count].condition, condition, 7);
-    thresholds[threshold_count].condition[7] = '\0';
-
-    strncpy(thresholds[threshold_count].message, message, MAX_ALERT_MESSAGE-1);
-    thresholds[threshold_count].message[MAX_ALERT_MESSAGE-1] = '\0';
-
+    strncpy(thresholds[threshold_count].condition, condition, sizeof(thresholds[0].condition) - 1);
     thresholds[threshold_count].is_active = 1;
     thresholds[threshold_count].created_at = time(NULL);
     thresholds[threshold_count].last_triggered = 0;
@@ -149,23 +145,32 @@ int alert_engine_check_measurement(const char* sensor_id, const char* sensor_typ
             logger_info("→ Coincide tipo de sensor");
 
             if (check_condition(value, thresholds[i].threshold_value, thresholds[i].condition)) {
-                logger_info("→ Condición cumplida (umbral superado)");
+                char alert_msg[MAX_ALERT_MESSAGE];
+                snprintf(alert_msg, sizeof(alert_msg), "%s: %.2f %s %.2f",
+                         sensor_type, value, thresholds[i].condition, thresholds[i].threshold_value);
 
-                if (!is_alert_already_active(sensor_id, thresholds[i].level)) {
-                    char alert_msg[MAX_ALERT_MESSAGE];
-                    snprintf(alert_msg, sizeof(alert_msg), "%s: %.2f %s %.2f",
-                             sensor_type, value, thresholds[i].condition, thresholds[i].threshold_value);
-
+                // Actualizar alerta existente o agregar nueva
+                int updated = 0;
+                for (int j = 0; j < active_alert_count; j++) {
+                    if (strcmp(active_alerts[j].sensor_id, sensor_id) == 0 &&
+                        active_alerts[j].level == thresholds[i].level &&
+                        !active_alerts[j].is_resolved) {
+                        active_alerts[j].value = value;
+                        active_alerts[j].timestamp = time(NULL);
+                        strncpy(active_alerts[j].message, alert_msg, sizeof(active_alerts[0].message) - 1);
+                        updated = 1;
+                        break;
+                    }
+                }
+                if (!updated) {
                     add_active_alert(sensor_id, sensor_type, value, thresholds[i].level, alert_msg);
-                    thresholds[i].last_triggered = time(NULL);
                     alerts_triggered++;
 
                     logger_info("→ ALERTA GENERADA Y REGISTRADA");
                 } else {
                     logger_info("→ Alerta ya activa (no se repite)");
                 }
-            } else {
-                logger_info("→ Condición NO cumplida");
+                thresholds[i].last_triggered = time(NULL);
             }
         } else {
             logger_info("→ No coincide tipo de sensor");

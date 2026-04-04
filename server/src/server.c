@@ -324,7 +324,6 @@ int start_server(int port, const char *log_file) {
     logger_info(message);
 
     sensor_manager_init();
-	alert_engine_register_threshold("temp", 30.0, 2, ">", "High temperature alert");
 
 	while (1) {
 		int client_fd;
