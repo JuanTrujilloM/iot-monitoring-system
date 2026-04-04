@@ -35,6 +35,7 @@ typedef struct client_context {
 	int client_fd;
 	char ip[INET_ADDRSTRLEN];
 	int port;
+	pthread_mutex_t write_mutex;
 } client_context_t;
 
 static void configure_receive_timeout(int client_fd) {
@@ -73,15 +74,18 @@ static int send_complete_response(int client_fd, const char *response, const cha
 	return 0;
 }
 
-static int operator_clients[100];      
+static int operator_clients[100];
+static pthread_mutex_t *operator_write_mutexes[100];
 static int operator_count = 0;
 static pthread_mutex_t operator_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-static void register_operator(int client_fd)
+static void register_operator(int client_fd, pthread_mutex_t *write_mutex)
 {
     pthread_mutex_lock(&operator_mutex);
     if (operator_count < 100) {
-        operator_clients[operator_count++] = client_fd;
+        operator_clients[operator_count] = client_fd;
+        operator_write_mutexes[operator_count] = write_mutex;
+        operator_count++;
         logger_info("Operator registered for alerts");
     }
     pthread_mutex_unlock(&operator_mutex);
@@ -92,7 +96,8 @@ static void remove_operator(int client_fd)
     pthread_mutex_lock(&operator_mutex);
     for (int i = 0; i < operator_count; i++) {
         if (operator_clients[i] == client_fd) {
-            operator_clients[i] = -1;  
+            operator_clients[i] = -1;
+            operator_write_mutexes[i] = NULL;
             break;
         }
     }
@@ -103,8 +108,10 @@ static void broadcast_alert(const char* alert_message)
 {
     pthread_mutex_lock(&operator_mutex);
     for (int i = 0; i < operator_count; i++) {
-        if (operator_clients[i] > 0) {
+        if (operator_clients[i] > 0 && operator_write_mutexes[i] != NULL) {
+            pthread_mutex_lock(operator_write_mutexes[i]);
             send(operator_clients[i], alert_message, strlen(alert_message), 0);
+            pthread_mutex_unlock(operator_write_mutexes[i]);
         }
     }
     pthread_mutex_unlock(&operator_mutex);
@@ -119,7 +126,7 @@ static void *handle_client(void *arg) {
     int bytes_received;
 
     snprintf(client_ip, sizeof(client_ip), "%s", context->ip);
-    free(context);
+    /* No liberamos context aquí — necesitamos write_mutex durante toda la conexión */
 
     configure_receive_timeout(client_fd);
 
@@ -163,11 +170,10 @@ static void *handle_client(void *arg) {
 								int alerts_triggered = alert_engine_check_measurement(msg.args[0], sensor_type, value);
 								if (alerts_triggered > 0) {
 									char alert_msg[256];
-									snprintf(alert_msg, sizeof(alert_msg), 
-											"ALERTA [%s] %s %.2f %s - Umbral superado!\r\n", 
+									snprintf(alert_msg, sizeof(alert_msg),
+											"ALERTA %s,%s,%.2f,%s\r\n",
 											msg.args[0], sensor_type, value, msg.args[2]);
 									broadcast_alert(alert_msg);
-									logger_info("Broadcast alert sent to all operators");
 								}
 							}
 						} else {
@@ -187,7 +193,7 @@ static void *handle_client(void *arg) {
                             char ok_msg[128];
                             snprintf(ok_msg, sizeof(ok_msg), "ROLE_%s", role);
                             response = protocol_build_ok(ok_msg);
-                            register_operator(client_fd);
+                            register_operator(client_fd, &context->write_mutex);
                             logger_info("Operator successfully logged in and registered for alerts");
                         } else if (auth_result == 0) {
                             response = protocol_build_error("401", "Invalid credentials");
@@ -240,10 +246,13 @@ static void *handle_client(void *arg) {
             }
         }
 
-        if (send_complete_response(client_fd, response, client_ip, client_port, msg.raw_buffer) == 0) {
+        pthread_mutex_lock(&context->write_mutex);
+        int send_result = send_complete_response(client_fd, response, client_ip, client_port, msg.raw_buffer);
+        pthread_mutex_unlock(&context->write_mutex);
+        if (send_result == 0) {
             logger_event("INFO", client_ip, client_port, msg.raw_buffer, response);
         } else {
-            break;  
+            break;
         }
     }
 
@@ -261,6 +270,8 @@ static void *handle_client(void *arg) {
 
     remove_operator(client_fd);
     CLOSE_SOCKET(client_fd);
+    pthread_mutex_destroy(&context->write_mutex);
+    free(context);
     return NULL;
 }
 
@@ -373,6 +384,7 @@ int start_server(int port, const char *log_file) {
 		context->port = ntohs(client_addr.sin_port);
 		memset(context->ip, 0, sizeof(context->ip));
 		snprintf(context->ip, sizeof(context->ip), "%s", client_ip);
+		pthread_mutex_init(&context->write_mutex, NULL);
 
 		if (pthread_create(&tid, NULL, handle_client, context) != 0) {
 			logger_error("Error creating thread");

@@ -15,5 +15,11 @@ class TemperatureSensor(SensorBase):
         super().__init__(host, port, sensor_id, self.SENSOR_TYPE, interval, retry_interval)
 
     def generate_value(self):
-        value = random.gauss(25.0, 5.0)
+        r = random.random()
+        if r < 0.05:                          # 5% → CRITICAL (> 50)
+            value = random.uniform(51.0, 65.0)
+        elif r < 0.25:                        # 20% → WARNING (30 < x <= 50)
+            value = random.uniform(31.0, 45.0)
+        else:                                 # 75% → normal (< 30)
+            value = random.gauss(22.0, 4.0)
         return round(max(-50.0, min(150.0, value)), 2)

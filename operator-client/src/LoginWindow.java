@@ -111,27 +111,29 @@ public class LoginWindow extends JFrame {
     private void openMainWindow() {
         try {
             MainWindow window = new MainWindow();
-            final boolean[] errorMostrado = {false};
 
-            Timer timer = new Timer(2000, e -> {
-                try {
-                    String sensorResponse = connection.fetchSensors();
-                    window.getSensorPanel().updateSensorDisplay(connection.parseSensors(sensorResponse));
+            // Callbacks despachados al hilo lector — actualizar UI en EDT
+            connection.setOnSensorsUpdate(sensors ->
+                SwingUtilities.invokeLater(() ->
+                    window.getSensorPanel().updateSensorDisplay(sensors)));
 
-                    String alertResponse = connection.fetchAlerts();
-                    window.getAlertPanel().updateAlertDisplay(connection.parseAlerts(alertResponse));
-                } catch (IOException ex) {
-                    ((Timer)e.getSource()).stop();
-                    if (!errorMostrado[0]) {
-                        errorMostrado[0] = true;
-                        JOptionPane.showMessageDialog(window,
-                            "Se perdió la conexión con el servidor.\n" +
-                            "La supervisión en tiempo real se detuvo.",
-                            "Conexión interrumpida",
-                            JOptionPane.WARNING_MESSAGE);
-                    }
-                }
-            });
+            connection.setOnAlertReceived(alertLine ->
+                SwingUtilities.invokeLater(() ->
+                    window.getAlertPanel().addAlert(alertLine)));
+
+            connection.setOnConnectionLost(() ->
+                SwingUtilities.invokeLater(() ->
+                    JOptionPane.showMessageDialog(window,
+                        "Se perdió la conexión con el servidor.\n" +
+                        "La supervisión en tiempo real se detuvo.",
+                        "Conexión interrumpida",
+                        JOptionPane.WARNING_MESSAGE)));
+
+            // Iniciar hilo lector antes de pedir sensores
+            connection.startListening();
+
+            // Timer solo manda GET_SENSORS cada 2s; la respuesta la procesa el hilo lector
+            Timer timer = new Timer(2000, e -> connection.requestSensors());
             timer.start();
 
             window.setVisible(true);

@@ -70,35 +70,26 @@ static int check_condition(double value, double threshold, const char* condition
 
 static void add_active_alert(const char* sensor_id, const char* sensor_type, double value, AlertLevel level, const char* message)
 {
+    // Si el arreglo está lleno, descarta la alerta más antigua para hacer espacio
     if (active_alert_count >= MAX_ALERTS) {
-        logger_error("Maximum number of active alerts reached");
-        return;
+        memmove(&active_alerts[0], &active_alerts[1], sizeof(ActiveAlert_t) * (MAX_ALERTS - 1));
+        active_alert_count = MAX_ALERTS - 1;
     }
 
-    int slot = -1;
-    for (int i = 0; i < MAX_ALERTS; i++) {
-        if (active_alerts[i].sensor_id[0] == '\0' || active_alerts[i].is_resolved) {
-            slot = i;
-            break;
-        }
-    }
-
-    if (slot == -1) {
-        logger_error("No available slot for new alert");
-        return;
-    }
+    int slot = active_alert_count;
 
     strncpy(active_alerts[slot].sensor_id, sensor_id, sizeof(active_alerts[0].sensor_id) - 1);
+    active_alerts[slot].sensor_id[sizeof(active_alerts[0].sensor_id) - 1] = '\0';
     strncpy(active_alerts[slot].sensor_type, sensor_type, sizeof(active_alerts[0].sensor_type) - 1);
+    active_alerts[slot].sensor_type[sizeof(active_alerts[0].sensor_type) - 1] = '\0';
     active_alerts[slot].value = value;
     active_alerts[slot].level = level;
     active_alerts[slot].timestamp = time(NULL);
     strncpy(active_alerts[slot].message, message, sizeof(active_alerts[0].message) - 1);
+    active_alerts[slot].message[sizeof(active_alerts[0].message) - 1] = '\0';
     active_alerts[slot].is_resolved = 0;
 
-    if (slot >= active_alert_count) {
-        active_alert_count = slot + 1;
-    }
+    active_alert_count++;
 
     char log_msg[256];
     snprintf(log_msg, sizeof(log_msg), "ALERT TRIGGERED: %s - %s (%.2f)",
@@ -124,23 +115,8 @@ int alert_engine_check_measurement(const char* sensor_id, const char* sensor_typ
                 snprintf(alert_msg, sizeof(alert_msg), "%s: %.2f %s %.2f",
                          sensor_type, value, thresholds[i].condition, thresholds[i].threshold_value);
 
-                int updated = 0;
-                for (int j = 0; j < active_alert_count; j++) {
-                    if (strcmp(active_alerts[j].sensor_id, sensor_id) == 0 &&
-                        active_alerts[j].level == thresholds[i].level &&
-                        !active_alerts[j].is_resolved) {
-                        active_alerts[j].value = value;
-                        active_alerts[j].timestamp = time(NULL);
-                        strncpy(active_alerts[j].message, alert_msg, sizeof(active_alerts[0].message) - 1);
-                        updated = 1;
-                        break;
-                    }
-                }
-
-                if (!updated) {
-                    add_active_alert(sensor_id, sensor_type, value, thresholds[i].level, alert_msg);
-                    alerts_triggered++;
-                }
+                add_active_alert(sensor_id, sensor_type, value, thresholds[i].level, alert_msg);
+                alerts_triggered++;
 
                 thresholds[i].last_triggered = time(NULL);
             }
