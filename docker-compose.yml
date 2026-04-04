@@ -1,0 +1,20 @@
+services:
+  auth-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.auth
+    container_name: auth-service
+    ports:
+      - "9000:9000"
+
+  central-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: central-server
+    depends_on:
+      - auth-service
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/app/logs

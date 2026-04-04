@@ -1,0 +1,20 @@
+# C server
+server/src/*.o
+server/src/*.o.d
+server/server
+server/server.exe
+server/protocol_test
+
+# Logs
+*.log
+logs/
+!logs/.gitkeep
+
+# Python sensors
+sensors/__pycache__/
+sensors/*.pyc
+
+*.class
+*.db
+out/
+target/

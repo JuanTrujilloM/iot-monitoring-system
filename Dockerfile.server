@@ -1,0 +1,19 @@
+FROM gcc:latest
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y build-essential
+
+# Ajustamos las rutas para que copie desde tu carpeta 'server'
+COPY server/src/ ./src/
+COPY server/include/ ./include/
+
+# Compilamos usando las rutas internas del contenedor
+RUN gcc src/*.c -I include -o server -lpthread
+
+RUN mkdir -p logs
+
+EXPOSE 8080
+
+# El ejecutable 'server' quedó en la raíz de /app
+CMD ["./server", "8080", "logs/server.log"]

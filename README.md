@@ -1,1 +1,1 @@
-# iot-monitoring-system
+# Sistema Distribuido de Monitoreo de Sensores IoT
