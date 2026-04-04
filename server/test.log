@@ -4,3 +4,4 @@
 [2026-04-03 00:57:08] [INFO][Thread 6170996736] IP=127.0.0.1 Port=52245 Message=PING Response=PONG
 
 [2026-04-03 00:57:08] [INFO][Thread 6170996736] IP=127.0.0.1 Port=52245 Message=Client disconnected Response=
+[2026-04-03 19:38:37] [ERROR][Thread 8396463872] Server bind failed

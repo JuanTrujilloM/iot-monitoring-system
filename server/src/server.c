@@ -73,6 +73,31 @@ static int send_complete_response(int client_fd, const char *response, const cha
 	return 0;
 }
 
+static int operator_clients[100];      
+static int operator_count = 0;
+static pthread_mutex_t operator_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+static void register_operator(int client_fd)
+{
+    pthread_mutex_lock(&operator_mutex);
+    if (operator_count < 100) {
+        operator_clients[operator_count++] = client_fd;
+        logger_info("Operator registered for alerts");
+    }
+    pthread_mutex_unlock(&operator_mutex);
+}
+
+static void broadcast_alert(const char* alert_message)
+{
+    pthread_mutex_lock(&operator_mutex);
+    for (int i = 0; i < operator_count; i++) {
+        if (operator_clients[i] > 0) {
+            send(operator_clients[i], alert_message, strlen(alert_message), 0);
+        }
+    }
+    pthread_mutex_unlock(&operator_mutex);
+}
+
 static void *handle_client(void *arg) {
     client_context_t *context = (client_context_t *)arg;
     int client_fd = context->client_fd;
@@ -104,7 +129,7 @@ static void *handle_client(void *arg) {
 
                 case CMD_REGISTER_SENSOR:
                     if (msg.argc >= 2) {
-                        if (sensor_manager_register(msg.args[1], msg.args[0]) == 0) {
+                        if (sensor_manager_register(msg.args[0], msg.args[1]) == 0) {
                             response = protocol_build_ok("SENSOR_REGISTERED");
                         } else {
                             response = protocol_build_error("500", "Failed to register sensor");
@@ -119,13 +144,24 @@ static void *handle_client(void *arg) {
                         double value = atof(msg.args[1]);
                         if (sensor_manager_add_measurement(msg.args[0], value, msg.args[2]) == 0) {
                             response = protocol_build_ok("MEASUREMENT_RECEIVED");
+
                             const char* sensor_type = sensor_manager_get_sensor_type(msg.args[0]);
+                            
+                            // DEBUG (temporal)
+                            char debug[256];
+                            snprintf(debug, sizeof(debug), "DEBUG - Medición sensor=%s tipo=%s valor=%.2f", 
+                                     msg.args[0], sensor_type ? sensor_type : "NULL", value);
+                            logger_info(debug);
+
                             if (sensor_type) {
-								int alertas_disparadas = alert_engine_check_measurement(msg.args[0], sensor_type, value);
-								if (alertas_disparadas > 0) {
-									response = protocol_build_alert(msg.args[0], "Umbral superado");
-								}
-							}
+                                int alerts_triggered = alert_engine_check_measurement(msg.args[0], sensor_type, value);
+                                if (alerts_triggered > 0) {
+                                    char alert_msg[256];
+                                    snprintf(alert_msg, sizeof(alert_msg), "ALERT %s Umbral superado\r\n", msg.args[0]);
+                                    broadcast_alert(alert_msg);
+                                    logger_info("Broadcast alert sent to all operators");
+                                }
+                            }
                         } else {
                             response = protocol_build_error("404", "Sensor not registered");
                         }
@@ -143,6 +179,8 @@ static void *handle_client(void *arg) {
                             char ok_msg[128];
                             snprintf(ok_msg, sizeof(ok_msg), "ROLE_%s", role);
                             response = protocol_build_ok(ok_msg);
+                            register_operator(client_fd);     // ←←← SOLO si el login es exitoso
+                            logger_info("Operator successfully logged in and registered for alerts");
                         } else if (auth_result == 0) {
                             response = protocol_build_error("401", "Invalid credentials");
                         } else {
@@ -286,7 +324,7 @@ int start_server(int port, const char *log_file) {
     logger_info(message);
 
     sensor_manager_init();
-	alert_engine_register_threshold("temperature", 30.0, 2, ">", "High temperature alert");
+	alert_engine_register_threshold("temp", 30.0, 2, ">", "High temperature alert");
 
 	while (1) {
 		int client_fd;
