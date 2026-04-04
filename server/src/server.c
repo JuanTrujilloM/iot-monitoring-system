@@ -87,6 +87,18 @@ static void register_operator(int client_fd)
     pthread_mutex_unlock(&operator_mutex);
 }
 
+static void remove_operator(int client_fd)
+{
+    pthread_mutex_lock(&operator_mutex);
+    for (int i = 0; i < operator_count; i++) {
+        if (operator_clients[i] == client_fd) {
+            operator_clients[i] = -1;  
+            break;
+        }
+    }
+    pthread_mutex_unlock(&operator_mutex);
+}
+
 static void broadcast_alert(const char* alert_message)
 {
     pthread_mutex_lock(&operator_mutex);
@@ -128,7 +140,7 @@ static void *handle_client(void *arg) {
 
                 case CMD_REGISTER_SENSOR:
                     if (msg.argc >= 2) {
-                        if (sensor_manager_register(msg.args[0], msg.args[1]) == 0) {
+                        if (sensor_manager_register(msg.args[1], msg.args[0]) == 0) {
                             response = protocol_build_ok("SENSOR_REGISTERED");
                         } else {
                             response = protocol_build_error("500", "Failed to register sensor");
@@ -241,6 +253,13 @@ static void *handle_client(void *arg) {
         logger_event("INFO", client_ip, client_port, "Receive error or timeout", "");
     }
 
+	if (bytes_received == 0) {
+        logger_event("INFO", client_ip, client_port, "Client disconnected", "");
+    } else {
+        logger_event("INFO", client_ip, client_port, "Receive error or timeout", "");
+    }
+
+    remove_operator(client_fd);
     CLOSE_SOCKET(client_fd);
     return NULL;
 }
