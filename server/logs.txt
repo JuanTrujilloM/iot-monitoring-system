@@ -1343,3 +1343,402 @@
 
 [2026-04-03 16:14:57] [INFO][Thread 126417121568448] IP=127.0.0.1 Port=60470 Message=GET_ALERTS Response=ALERTS 
 
+[2026-04-03 19:21:47] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 19:21:47] [INFO][Thread 8396463872] Sensor manager initialized
+[2026-04-03 19:21:47] [INFO][Thread 8396463872] Alert threshold registered for temperature: > 30.00
+[2026-04-03 19:21:53] [INFO][Thread 8396463872] IP=127.0.0.1 Port=50315 Message=Incoming connection Response=
+[2026-04-03 19:21:53] [INFO][Thread 6098644992] IP=127.0.0.1 Port=50315 Message=Connection started Response=type=unknown
+[2026-04-03 19:22:04] [INFO][Thread 8396463872] IP=127.0.0.1 Port=50317 Message=Incoming connection Response=
+[2026-04-03 19:22:04] [INFO][Thread 6099218432] IP=127.0.0.1 Port=50317 Message=Connection started Response=type=unknown
+[2026-04-03 19:22:20] [INFO][Thread 6099218432] IP=127.0.0.1 Port=50317 Message=LOGIN Response=ERROR 503 Auth service unavailable
+
+[2026-04-03 19:22:53] [INFO][Thread 6098644992] IP=127.0.0.1 Port=50315 Message=Receive error or timeout Response=
+[2026-04-03 19:23:20] [INFO][Thread 6099218432] IP=127.0.0.1 Port=50317 Message=Receive error or timeout Response=
+[2026-04-03 19:35:57] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 19:35:57] [INFO][Thread 8396463872] Sensor manager initialized
+[2026-04-03 19:35:57] [INFO][Thread 8396463872] Alert threshold registered for temp: > 30.00
+[2026-04-03 19:36:08] [INFO][Thread 8396463872] IP=127.0.0.1 Port=50449 Message=Incoming connection Response=
+[2026-04-03 19:36:08] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50449 Message=Connection started Response=type=unknown
+[2026-04-03 19:36:27] [INFO][Thread 6138261504] Sensor registered: temp (s1)
+[2026-04-03 19:36:27] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50449 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 19:36:45] [ERROR][Thread 6138261504] Measurement received from unregistered sensor
+[2026-04-03 19:36:45] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50449 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 19:37:45] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50449 Message=Receive error or timeout Response=
+[2026-04-03 19:38:37] [INFO][Thread 8396463872] IP=127.0.0.1 Port=50479 Message=Incoming connection Response=
+[2026-04-03 19:38:37] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50479 Message=Connection started Response=type=unknown
+[2026-04-03 19:38:37] [INFO][Thread 6138261504] IP=0.0.0.0 Port=0 Message=Sensor already registered Response=temp
+[2026-04-03 19:38:37] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50479 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 19:38:37] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50479 Message=Client disconnected Response=
+[2026-04-03 19:38:37] [INFO][Thread 8396463872] IP=127.0.0.1 Port=50480 Message=Incoming connection Response=
+[2026-04-03 19:38:37] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50480 Message=Connection started Response=type=unknown
+[2026-04-03 19:38:37] [ERROR][Thread 6138261504] Measurement received from unregistered sensor
+[2026-04-03 19:38:37] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50480 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 19:38:37] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50480 Message=Client disconnected Response=
+[2026-04-03 19:38:37] [INFO][Thread 8396463872] IP=127.0.0.1 Port=50481 Message=Incoming connection Response=
+[2026-04-03 19:38:37] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50481 Message=Connection started Response=type=unknown
+[2026-04-03 19:38:37] [ERROR][Thread 6138261504] Measurement received from unregistered sensor
+[2026-04-03 19:38:37] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50481 Message=MEASUREMENT Response=ERROR 404 Sensor not registered
+
+[2026-04-03 19:38:37] [INFO][Thread 6138261504] IP=127.0.0.1 Port=50481 Message=Client disconnected Response=
+[2026-04-03 19:40:56] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 19:40:56] [INFO][Thread 8396463872] Sensor manager initialized
+[2026-04-03 19:40:56] [INFO][Thread 8396463872] Alert threshold registered for temp: > 30.00
+[2026-04-03 19:41:05] [INFO][Thread 8396463872] IP=127.0.0.1 Port=50531 Message=Incoming connection Response=
+[2026-04-03 19:41:05] [INFO][Thread 6134018048] IP=127.0.0.1 Port=50531 Message=Connection started Response=type=unknown
+[2026-04-03 19:41:28] [INFO][Thread 6134018048] Sensor registered: s1 (temp)
+[2026-04-03 19:41:28] [INFO][Thread 6134018048] IP=127.0.0.1 Port=50531 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 19:41:46] [INFO][Thread 6134018048] Measurement from s1: 60.00 °C
+[2026-04-03 19:41:46] [INFO][Thread 6134018048] IP=127.0.0.1 Port=50531 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 19:42:46] [INFO][Thread 6134018048] IP=127.0.0.1 Port=50531 Message=Receive error or timeout Response=
+[2026-04-03 19:52:14] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 19:52:14] [INFO][Thread 8396463872] Sensor manager initialized
+[2026-04-03 19:52:14] [INFO][Thread 8396463872] Alert threshold registered for temp: > 30.00
+[2026-04-03 19:52:57] [INFO][Thread 8396463872] IP=127.0.0.1 Port=50622 Message=Incoming connection Response=
+[2026-04-03 19:52:57] [INFO][Thread 6122500096] IP=127.0.0.1 Port=50622 Message=Connection started Response=type=unknown
+[2026-04-03 19:53:08] [INFO][Thread 6122500096] IP=127.0.0.1 Port=50622 Message=LOGIN Response=ERROR 401 Invalid credentials
+
+[2026-04-03 19:54:08] [INFO][Thread 6122500096] IP=127.0.0.1 Port=50622 Message=Receive error or timeout Response=
+[2026-04-03 20:41:09] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 20:41:09] [INFO][Thread 8396463872] Sensor manager initialized
+[2026-04-03 20:41:09] [INFO][Thread 8396463872] Alert threshold registered for temp: > 30.00
+[2026-04-03 20:41:22] [INFO][Thread 8396463872] IP=127.0.0.1 Port=50837 Message=Incoming connection Response=
+[2026-04-03 20:41:22] [INFO][Thread 6104608768] IP=127.0.0.1 Port=50837 Message=Connection started Response=type=unknown
+[2026-04-03 20:41:33] [INFO][Thread 6104608768] IP=127.0.0.1 Port=50837 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 20:42:03] [INFO][Thread 8396463872] IP=127.0.0.1 Port=50840 Message=Incoming connection Response=
+[2026-04-03 20:42:03] [INFO][Thread 6105182208] IP=127.0.0.1 Port=50840 Message=Connection started Response=type=unknown
+[2026-04-03 20:42:15] [INFO][Thread 6105182208] Sensor registered: s1 (temp)
+[2026-04-03 20:42:15] [INFO][Thread 6105182208] IP=127.0.0.1 Port=50840 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 20:42:33] [INFO][Thread 6104608768] IP=127.0.0.1 Port=50837 Message=Receive error or timeout Response=
+[2026-04-03 20:42:41] [INFO][Thread 6105182208] Measurement from s1: 25.00 °C
+[2026-04-03 20:42:41] [INFO][Thread 6105182208] IP=127.0.0.1 Port=50840 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 20:43:22] [INFO][Thread 6105182208] Measurement from s1: 45.00 °C
+[2026-04-03 20:43:22] [INFO][Thread 6105182208] IP=127.0.0.1 Port=50840 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 20:43:27] [INFO][Thread 8396463872] IP=127.0.0.1 Port=50842 Message=Incoming connection Response=
+[2026-04-03 20:43:27] [INFO][Thread 6104608768] IP=127.0.0.1 Port=50842 Message=Connection started Response=type=unknown
+[2026-04-03 20:43:34] [INFO][Thread 6104608768] IP=127.0.0.1 Port=50842 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 20:43:47] [INFO][Thread 6105182208] Measurement from s1: 60.00 °C
+[2026-04-03 20:43:47] [INFO][Thread 6105182208] IP=127.0.0.1 Port=50840 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 20:44:34] [INFO][Thread 6104608768] IP=127.0.0.1 Port=50842 Message=Receive error or timeout Response=
+[2026-04-03 20:44:47] [INFO][Thread 6105182208] IP=127.0.0.1 Port=50840 Message=Receive error or timeout Response=
+[2026-04-03 21:08:07] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 21:08:07] [INFO][Thread 8396463872] Sensor manager initialized
+[2026-04-03 21:08:07] [INFO][Thread 8396463872] Alert threshold registered for temp: > 30.00
+[2026-04-03 21:08:43] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51021 Message=Incoming connection Response=
+[2026-04-03 21:08:43] [INFO][Thread 6090043392] IP=127.0.0.1 Port=51021 Message=Connection started Response=type=unknown
+[2026-04-03 21:08:55] [INFO][Thread 6090043392] Sensor registered: s1 (temp)
+[2026-04-03 21:08:55] [INFO][Thread 6090043392] IP=127.0.0.1 Port=51021 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 21:09:12] [INFO][Thread 6090043392] Measurement from s1: 25.00 °C
+[2026-04-03 21:09:12] [INFO][Thread 6090043392] DEBUG - Medición sensor=s1 tipo=temp valor=25.00
+[2026-04-03 21:09:12] [INFO][Thread 6090043392] IP=127.0.0.1 Port=51021 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 21:09:28] [INFO][Thread 6090043392] Measurement from s1: 45.00 °C
+[2026-04-03 21:09:28] [INFO][Thread 6090043392] DEBUG - Medición sensor=s1 tipo=temp valor=45.00
+[2026-04-03 21:09:28] [INFO][Thread 6090043392] IP=127.0.0.1 Port=51021 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 21:09:37] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51026 Message=Incoming connection Response=
+[2026-04-03 21:09:37] [INFO][Thread 6090616832] IP=127.0.0.1 Port=51026 Message=Connection started Response=type=unknown
+[2026-04-03 21:09:44] [INFO][Thread 6090616832] Operator registered for alerts
+[2026-04-03 21:09:44] [INFO][Thread 6090616832] Operator successfully logged in and registered for alerts
+[2026-04-03 21:09:44] [INFO][Thread 6090616832] IP=127.0.0.1 Port=51026 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 21:09:59] [INFO][Thread 6090043392] Measurement from s1: 60.00 °C
+[2026-04-03 21:09:59] [INFO][Thread 6090043392] DEBUG - Medición sensor=s1 tipo=temp valor=60.00
+[2026-04-03 21:09:59] [INFO][Thread 6090043392] IP=127.0.0.1 Port=51021 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 21:10:44] [INFO][Thread 6090616832] IP=127.0.0.1 Port=51026 Message=Receive error or timeout Response=
+[2026-04-03 21:10:59] [INFO][Thread 6090043392] IP=127.0.0.1 Port=51021 Message=Receive error or timeout Response=
+[2026-04-03 21:14:25] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 21:14:25] [INFO][Thread 8396463872] Sensor manager initialized
+[2026-04-03 21:14:25] [INFO][Thread 8396463872] Alert threshold registered for temp: > 30.00
+[2026-04-03 21:14:48] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51069 Message=Incoming connection Response=
+[2026-04-03 21:14:48] [INFO][Thread 6132871168] IP=127.0.0.1 Port=51069 Message=Connection started Response=type=unknown
+[2026-04-03 21:15:02] [INFO][Thread 6132871168] Sensor registered: s1 (temp)
+[2026-04-03 21:15:02] [INFO][Thread 6132871168] IP=127.0.0.1 Port=51069 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] Measurement from s1: 45.00 °C
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] DEBUG - Medición sensor=s1 tipo=temp valor=45.00
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] DEBUG ALERT CHECK: sensor=s1 tipo=temp valor=45.00
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] DEBUG THRESHOLD 0: tipo= umbral=30.00 cond=>
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] → No coincide tipo de sensor
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] DEBUG THRESHOLD 1: tipo= umbral=50.00 cond=>
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] → No coincide tipo de sensor
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] DEBUG THRESHOLD 2: tipo= umbral=5.00 cond=>
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] → No coincide tipo de sensor
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] DEBUG THRESHOLD 3: tipo= umbral=10.00 cond=>
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] → No coincide tipo de sensor
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] DEBUG THRESHOLD 4: tipo= umbral=500.00 cond=>
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] → No coincide tipo de sensor
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] DEBUG THRESHOLD 5: tipo= umbral=30.00 cond=>
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] → No coincide tipo de sensor
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] DEBUG FINAL: Se dispararon 0 alertas
+[2026-04-03 21:15:21] [INFO][Thread 6132871168] IP=127.0.0.1 Port=51069 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 21:15:47] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51070 Message=Incoming connection Response=
+[2026-04-03 21:15:47] [INFO][Thread 6133444608] IP=127.0.0.1 Port=51070 Message=Connection started Response=type=unknown
+[2026-04-03 21:15:55] [INFO][Thread 6133444608] Operator registered for alerts
+[2026-04-03 21:15:55] [INFO][Thread 6133444608] Operator successfully logged in and registered for alerts
+[2026-04-03 21:15:55] [INFO][Thread 6133444608] IP=127.0.0.1 Port=51070 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] Measurement from s1: 60.00 °C
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] DEBUG - Medición sensor=s1 tipo=temp valor=60.00
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] DEBUG ALERT CHECK: sensor=s1 tipo=temp valor=60.00
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] DEBUG THRESHOLD 0: tipo= umbral=30.00 cond=>
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] → No coincide tipo de sensor
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] DEBUG THRESHOLD 1: tipo= umbral=50.00 cond=>
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] → No coincide tipo de sensor
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] DEBUG THRESHOLD 2: tipo= umbral=5.00 cond=>
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] → No coincide tipo de sensor
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] DEBUG THRESHOLD 3: tipo= umbral=10.00 cond=>
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] → No coincide tipo de sensor
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] DEBUG THRESHOLD 4: tipo= umbral=500.00 cond=>
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] → No coincide tipo de sensor
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] DEBUG THRESHOLD 5: tipo= umbral=30.00 cond=>
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] → No coincide tipo de sensor
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] DEBUG FINAL: Se dispararon 0 alertas
+[2026-04-03 21:16:08] [INFO][Thread 6132871168] IP=127.0.0.1 Port=51069 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 21:16:55] [INFO][Thread 6133444608] IP=127.0.0.1 Port=51070 Message=Receive error or timeout Response=
+[2026-04-03 21:17:08] [INFO][Thread 6132871168] IP=127.0.0.1 Port=51069 Message=Receive error or timeout Response=
+[2026-04-03 21:20:35] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 21:20:35] [INFO][Thread 8396463872] Sensor manager initialized
+[2026-04-03 21:20:35] [INFO][Thread 8396463872] Alert threshold registered for temp: > 30.00
+[2026-04-03 21:21:15] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51108 Message=Incoming connection Response=
+[2026-04-03 21:21:15] [INFO][Thread 6163001344] IP=127.0.0.1 Port=51108 Message=Connection started Response=type=unknown
+[2026-04-03 21:21:29] [INFO][Thread 6163001344] Sensor registered: s1 (temp)
+[2026-04-03 21:21:29] [INFO][Thread 6163001344] IP=127.0.0.1 Port=51108 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] Measurement from s1: 45.00 °C
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] DEBUG - Medición sensor=s1 tipo=temp valor=45.00
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] DEBUG ALERT CHECK: sensor=s1 tipo='temp' valor=45.00
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] DEBUG THRESHOLD 0: tipo='' umbral=30.00 cond='>'
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] → No coincide tipo de sensor
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] DEBUG THRESHOLD 1: tipo='' umbral=50.00 cond='>'
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] → No coincide tipo de sensor
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] DEBUG THRESHOLD 2: tipo='' umbral=5.00 cond='>'
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] → No coincide tipo de sensor
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] DEBUG THRESHOLD 3: tipo='' umbral=10.00 cond='>'
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] → No coincide tipo de sensor
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] DEBUG THRESHOLD 4: tipo='' umbral=500.00 cond='>'
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] → No coincide tipo de sensor
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] DEBUG THRESHOLD 5: tipo='' umbral=30.00 cond='>'
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] → No coincide tipo de sensor
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] DEBUG FINAL: Se dispararon 0 alertas
+[2026-04-03 21:22:04] [INFO][Thread 6163001344] IP=127.0.0.1 Port=51108 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 21:22:27] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51109 Message=Incoming connection Response=
+[2026-04-03 21:22:27] [INFO][Thread 6163574784] IP=127.0.0.1 Port=51109 Message=Connection started Response=type=unknown
+[2026-04-03 21:22:35] [INFO][Thread 6163574784] Operator registered for alerts
+[2026-04-03 21:22:35] [INFO][Thread 6163574784] Operator successfully logged in and registered for alerts
+[2026-04-03 21:22:35] [INFO][Thread 6163574784] IP=127.0.0.1 Port=51109 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] Measurement from s1: 60.00 °C
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] DEBUG - Medición sensor=s1 tipo=temp valor=60.00
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] DEBUG ALERT CHECK: sensor=s1 tipo='temp' valor=60.00
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] DEBUG THRESHOLD 0: tipo='' umbral=30.00 cond='>'
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] → No coincide tipo de sensor
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] DEBUG THRESHOLD 1: tipo='' umbral=50.00 cond='>'
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] → No coincide tipo de sensor
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] DEBUG THRESHOLD 2: tipo='' umbral=5.00 cond='>'
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] → No coincide tipo de sensor
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] DEBUG THRESHOLD 3: tipo='' umbral=10.00 cond='>'
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] → No coincide tipo de sensor
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] DEBUG THRESHOLD 4: tipo='' umbral=500.00 cond='>'
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] → No coincide tipo de sensor
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] DEBUG THRESHOLD 5: tipo='' umbral=30.00 cond='>'
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] → No coincide tipo de sensor
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] DEBUG FINAL: Se dispararon 0 alertas
+[2026-04-03 21:22:48] [INFO][Thread 6163001344] IP=127.0.0.1 Port=51108 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 21:23:35] [INFO][Thread 6163574784] IP=127.0.0.1 Port=51109 Message=Receive error or timeout Response=
+[2026-04-03 21:23:48] [INFO][Thread 6163001344] IP=127.0.0.1 Port=51108 Message=Receive error or timeout Response=
+[2026-04-03 22:17:32] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 22:17:32] [INFO][Thread 8396463872] Sensor manager initialized
+[2026-04-03 22:17:42] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51392 Message=Incoming connection Response=
+[2026-04-03 22:17:42] [INFO][Thread 6104772608] IP=127.0.0.1 Port=51392 Message=Connection started Response=type=unknown
+[2026-04-03 22:17:54] [INFO][Thread 6104772608] Sensor registered: s1 (temp)
+[2026-04-03 22:17:54] [INFO][Thread 6104772608] IP=127.0.0.1 Port=51392 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:18:15] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51402 Message=Incoming connection Response=
+[2026-04-03 22:18:15] [INFO][Thread 6105346048] IP=127.0.0.1 Port=51402 Message=Connection started Response=type=unknown
+[2026-04-03 22:18:21] [INFO][Thread 6105346048] Operator registered for alerts
+[2026-04-03 22:18:21] [INFO][Thread 6105346048] Operator successfully logged in and registered for alerts
+[2026-04-03 22:18:21] [INFO][Thread 6105346048] IP=127.0.0.1 Port=51402 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] Measurement from s1: 60.00 °C
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] DEBUG - Medición sensor=s1 tipo=temp valor=60.00
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] DEBUG ALERT CHECK: sensor=s1 tipo='temp' valor=60.00
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] DEBUG THRESHOLD 0: tipo='temperature' umbral=30.00 cond='>'
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] → No coincide tipo de sensor
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] DEBUG THRESHOLD 1: tipo='temperature' umbral=50.00 cond='>'
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] → No coincide tipo de sensor
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] DEBUG THRESHOLD 2: tipo='vibration' umbral=5.00 cond='>'
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] → No coincide tipo de sensor
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] DEBUG THRESHOLD 3: tipo='vibration' umbral=10.00 cond='>'
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] → No coincide tipo de sensor
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] DEBUG THRESHOLD 4: tipo='energy' umbral=500.00 cond='>'
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] → No coincide tipo de sensor
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] DEBUG FINAL: Se dispararon 0 alertas
+[2026-04-03 22:18:44] [INFO][Thread 6104772608] IP=127.0.0.1 Port=51392 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:19:21] [INFO][Thread 6105346048] IP=127.0.0.1 Port=51402 Message=Receive error or timeout Response=
+[2026-04-03 22:19:44] [INFO][Thread 6104772608] IP=127.0.0.1 Port=51392 Message=Receive error or timeout Response=
+[2026-04-03 22:36:14] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 22:36:46] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51524 Message=Incoming connection Response=
+[2026-04-03 22:36:46] [INFO][Thread 6092156928] IP=127.0.0.1 Port=51524 Message=Connection started Response=type=unknown
+[2026-04-03 22:37:00] [INFO][Thread 6092156928] Sensor registered: s1 (temp)
+[2026-04-03 22:37:00] [INFO][Thread 6092156928] IP=127.0.0.1 Port=51524 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:37:08] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51528 Message=Incoming connection Response=
+[2026-04-03 22:37:08] [INFO][Thread 6092730368] IP=127.0.0.1 Port=51528 Message=Connection started Response=type=unknown
+[2026-04-03 22:37:14] [INFO][Thread 6092730368] Operator registered for alerts
+[2026-04-03 22:37:14] [INFO][Thread 6092730368] Operator successfully logged in and registered for alerts
+[2026-04-03 22:37:14] [INFO][Thread 6092730368] IP=127.0.0.1 Port=51528 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] Measurement from s1: 60.00 °C
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] DEBUG - Medición sensor=s1 tipo=temp valor=60.00
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] DEBUG ALERT CHECK: sensor=s1 tipo='temp' valor=60.00
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] DEBUG THRESHOLD 0: tipo='temp' umbral=30.00 cond='>'
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] → Coincide tipo de sensor
+[2026-04-03 22:37:40] [ERROR][Thread 6092156928] ALERT TRIGGERED: s1 - temp: 60.00 > 30.00 (60.00)
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] → ALERTA GENERADA Y REGISTRADA
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] DEBUG THRESHOLD 1: tipo='temp' umbral=50.00 cond='>'
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] → Coincide tipo de sensor
+[2026-04-03 22:37:40] [ERROR][Thread 6092156928] ALERT TRIGGERED: s1 - temp: 60.00 > 50.00 (60.00)
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] → ALERTA GENERADA Y REGISTRADA
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] DEBUG THRESHOLD 2: tipo='vib' umbral=5.00 cond='>'
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] → No coincide tipo de sensor
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] DEBUG THRESHOLD 3: tipo='vib' umbral=10.00 cond='>'
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] → No coincide tipo de sensor
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] DEBUG THRESHOLD 4: tipo='energy' umbral=500.00 cond='>'
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] → No coincide tipo de sensor
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] DEBUG FINAL: Se dispararon 2 alertas
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] Broadcast alert sent to all operators
+[2026-04-03 22:37:40] [INFO][Thread 6092156928] IP=127.0.0.1 Port=51524 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:38:14] [INFO][Thread 6092730368] IP=127.0.0.1 Port=51528 Message=Receive error or timeout Response=
+[2026-04-03 22:38:40] [INFO][Thread 6092156928] IP=127.0.0.1 Port=51524 Message=Receive error or timeout Response=
+[2026-04-03 22:52:44] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 22:53:05] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51629 Message=Incoming connection Response=
+[2026-04-03 22:53:05] [INFO][Thread 6100512768] IP=127.0.0.1 Port=51629 Message=Connection started Response=type=unknown
+[2026-04-03 22:53:15] [INFO][Thread 6100512768] Sensor registered: s1 (temp)
+[2026-04-03 22:53:15] [INFO][Thread 6100512768] IP=127.0.0.1 Port=51629 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 22:53:25] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51631 Message=Incoming connection Response=
+[2026-04-03 22:53:25] [INFO][Thread 6101086208] IP=127.0.0.1 Port=51631 Message=Connection started Response=type=unknown
+[2026-04-03 22:53:31] [INFO][Thread 6101086208] Operator registered for alerts
+[2026-04-03 22:53:31] [INFO][Thread 6101086208] Operator successfully logged in and registered for alerts
+[2026-04-03 22:53:31] [INFO][Thread 6101086208] IP=127.0.0.1 Port=51631 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 22:53:53] [INFO][Thread 6100512768] Measurement from s1: 60.00 °C
+[2026-04-03 22:53:53] [INFO][Thread 6100512768] DEBUG - Medición sensor=s1 tipo=temp valor=60.00
+[2026-04-03 22:53:53] [INFO][Thread 6100512768] → Coincide tipo de sensor
+[2026-04-03 22:53:53] [ERROR][Thread 6100512768] ALERT TRIGGERED: s1 - temp: 60.00 > 30.00 (60.00)
+[2026-04-03 22:53:53] [INFO][Thread 6100512768] → ALERTA GENERADA Y REGISTRADA
+[2026-04-03 22:53:53] [INFO][Thread 6100512768] → Coincide tipo de sensor
+[2026-04-03 22:53:53] [ERROR][Thread 6100512768] ALERT TRIGGERED: s1 - temp: 60.00 > 50.00 (60.00)
+[2026-04-03 22:53:53] [INFO][Thread 6100512768] → ALERTA GENERADA Y REGISTRADA
+[2026-04-03 22:53:53] [INFO][Thread 6100512768] → No coincide tipo de sensor
+[2026-04-03 22:53:53] [INFO][Thread 6100512768] → No coincide tipo de sensor
+[2026-04-03 22:53:53] [INFO][Thread 6100512768] → No coincide tipo de sensor
+[2026-04-03 22:53:53] [INFO][Thread 6100512768] DEBUG FINAL: Se dispararon 2 alertas
+[2026-04-03 22:53:53] [INFO][Thread 6100512768] Broadcast alert sent to all operators
+[2026-04-03 22:53:53] [INFO][Thread 6100512768] IP=127.0.0.1 Port=51629 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 22:54:31] [INFO][Thread 6101086208] IP=127.0.0.1 Port=51631 Message=Receive error or timeout Response=
+[2026-04-03 22:54:53] [INFO][Thread 6100512768] IP=127.0.0.1 Port=51629 Message=Receive error or timeout Response=
+[2026-04-03 23:01:43] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 23:01:51] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51693 Message=Incoming connection Response=
+[2026-04-03 23:01:51] [INFO][Thread 6134444032] IP=127.0.0.1 Port=51693 Message=Connection started Response=type=unknown
+[2026-04-03 23:02:11] [INFO][Thread 6134444032] Sensor registered: s1 (temp)
+[2026-04-03 23:02:11] [INFO][Thread 6134444032] IP=127.0.0.1 Port=51693 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 23:02:23] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51695 Message=Incoming connection Response=
+[2026-04-03 23:02:23] [INFO][Thread 6135017472] IP=127.0.0.1 Port=51695 Message=Connection started Response=type=unknown
+[2026-04-03 23:02:28] [INFO][Thread 6135017472] Operator registered for alerts
+[2026-04-03 23:02:28] [INFO][Thread 6135017472] Operator successfully logged in and registered for alerts
+[2026-04-03 23:02:28] [INFO][Thread 6135017472] IP=127.0.0.1 Port=51695 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 23:02:43] [INFO][Thread 6134444032] Measurement from s1: 60.00 °C
+[2026-04-03 23:02:43] [INFO][Thread 6134444032] IP=127.0.0.1 Port=51693 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 23:03:28] [INFO][Thread 6135017472] IP=127.0.0.1 Port=51695 Message=Receive error or timeout Response=
+[2026-04-03 23:03:43] [INFO][Thread 6134444032] IP=127.0.0.1 Port=51693 Message=Receive error or timeout Response=
+[2026-04-03 23:04:04] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 23:04:13] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51714 Message=Incoming connection Response=
+[2026-04-03 23:04:13] [INFO][Thread 6125744128] IP=127.0.0.1 Port=51714 Message=Connection started Response=type=unknown
+[2026-04-03 23:04:39] [INFO][Thread 6125744128] Sensor registered: s1 (temp)
+[2026-04-03 23:04:39] [INFO][Thread 6125744128] IP=127.0.0.1 Port=51714 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 23:04:47] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51717 Message=Incoming connection Response=
+[2026-04-03 23:04:47] [INFO][Thread 6126317568] IP=127.0.0.1 Port=51717 Message=Connection started Response=type=unknown
+[2026-04-03 23:04:53] [INFO][Thread 6126317568] Operator registered for alerts
+[2026-04-03 23:04:53] [INFO][Thread 6126317568] Operator successfully logged in and registered for alerts
+[2026-04-03 23:04:53] [INFO][Thread 6126317568] IP=127.0.0.1 Port=51717 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 23:05:22] [INFO][Thread 6125744128] Measurement from s1: 60.00 °C
+[2026-04-03 23:05:22] [INFO][Thread 6125744128] DEBUG - Medición sensor=s1 tipo=temp valor=60.00
+[2026-04-03 23:05:22] [INFO][Thread 6125744128] IP=127.0.0.1 Port=51714 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 23:05:53] [INFO][Thread 6126317568] IP=127.0.0.1 Port=51717 Message=Receive error or timeout Response=
+[2026-04-03 23:06:22] [INFO][Thread 6125744128] IP=127.0.0.1 Port=51714 Message=Receive error or timeout Response=
+[2026-04-03 23:06:43] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 23:06:58] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51735 Message=Incoming connection Response=
+[2026-04-03 23:06:58] [INFO][Thread 6101872640] IP=127.0.0.1 Port=51735 Message=Connection started Response=type=unknown
+[2026-04-03 23:07:07] [INFO][Thread 6101872640] Sensor registered: s1 (temp)
+[2026-04-03 23:07:07] [INFO][Thread 6101872640] IP=127.0.0.1 Port=51735 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 23:07:12] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51736 Message=Incoming connection Response=
+[2026-04-03 23:07:12] [INFO][Thread 6102446080] IP=127.0.0.1 Port=51736 Message=Connection started Response=type=unknown
+[2026-04-03 23:07:17] [INFO][Thread 6102446080] Operator registered for alerts
+[2026-04-03 23:07:17] [INFO][Thread 6102446080] Operator successfully logged in and registered for alerts
+[2026-04-03 23:07:17] [INFO][Thread 6102446080] IP=127.0.0.1 Port=51736 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 23:07:38] [INFO][Thread 6101872640] Measurement from s1: 60.00 °C
+[2026-04-03 23:07:38] [INFO][Thread 6101872640] → Coincide tipo de sensor
+[2026-04-03 23:07:38] [ERROR][Thread 6101872640] ALERT TRIGGERED: s1 - temp: 60.00 > 30.00 (60.00)
+[2026-04-03 23:07:38] [INFO][Thread 6101872640] → ALERTA GENERADA Y REGISTRADA
+[2026-04-03 23:07:38] [INFO][Thread 6101872640] → Coincide tipo de sensor
+[2026-04-03 23:07:38] [ERROR][Thread 6101872640] ALERT TRIGGERED: s1 - temp: 60.00 > 50.00 (60.00)
+[2026-04-03 23:07:38] [INFO][Thread 6101872640] → ALERTA GENERADA Y REGISTRADA
+[2026-04-03 23:07:38] [INFO][Thread 6101872640] → No coincide tipo de sensor
+[2026-04-03 23:07:38] [INFO][Thread 6101872640] → No coincide tipo de sensor
+[2026-04-03 23:07:38] [INFO][Thread 6101872640] → No coincide tipo de sensor
+[2026-04-03 23:07:38] [INFO][Thread 6101872640] DEBUG FINAL: Se dispararon 2 alertas
+[2026-04-03 23:07:38] [INFO][Thread 6101872640] Broadcast alert sent to all operators
+[2026-04-03 23:07:38] [INFO][Thread 6101872640] IP=127.0.0.1 Port=51735 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 23:08:17] [INFO][Thread 6102446080] IP=127.0.0.1 Port=51736 Message=Receive error or timeout Response=
+[2026-04-03 23:08:38] [INFO][Thread 6101872640] IP=127.0.0.1 Port=51735 Message=Receive error or timeout Response=
+[2026-04-03 23:21:19] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 23:21:36] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51814 Message=Incoming connection Response=
+[2026-04-03 23:21:36] [INFO][Thread 6126727168] IP=127.0.0.1 Port=51814 Message=Connection started Response=type=unknown
+[2026-04-03 23:21:44] [INFO][Thread 6126727168] Sensor registered: s1 (temp)
+[2026-04-03 23:21:44] [INFO][Thread 6126727168] IP=127.0.0.1 Port=51814 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 23:21:51] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51815 Message=Incoming connection Response=
+[2026-04-03 23:21:51] [INFO][Thread 6127300608] IP=127.0.0.1 Port=51815 Message=Connection started Response=type=unknown
+[2026-04-03 23:21:59] [INFO][Thread 6127300608] Operator registered for alerts
+[2026-04-03 23:21:59] [INFO][Thread 6127300608] Operator successfully logged in and registered for alerts
+[2026-04-03 23:21:59] [INFO][Thread 6127300608] IP=127.0.0.1 Port=51815 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 23:22:18] [INFO][Thread 6126727168] Measurement from s1: 60.00 °C
+[2026-04-03 23:22:18] [ERROR][Thread 6126727168] ALERT TRIGGERED: s1 - temp: 60.00 > 30.00 (60.00)
+[2026-04-03 23:22:18] [ERROR][Thread 6126727168] ALERT TRIGGERED: s1 - temp: 60.00 > 50.00 (60.00)
+[2026-04-03 23:22:18] [INFO][Thread 6126727168] Broadcast alert sent to all operators
+[2026-04-03 23:22:18] [INFO][Thread 6126727168] IP=127.0.0.1 Port=51814 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 23:22:59] [INFO][Thread 6127300608] IP=127.0.0.1 Port=51815 Message=Receive error or timeout Response=
+[2026-04-03 23:23:18] [INFO][Thread 6126727168] IP=127.0.0.1 Port=51814 Message=Receive error or timeout Response=

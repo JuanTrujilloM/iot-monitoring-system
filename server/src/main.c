@@ -21,19 +21,16 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
-    /* The sensor manager is initialized before the server starts. */
     if (sensor_manager_init() != 0) {
         fprintf(stderr, "Error: Could not initialize sensor manager\n");
         return EXIT_FAILURE;
     }
 
-    /* The alert engine is initialized before the server starts. */
     if (alert_engine_init() != 0) {
         fprintf(stderr, "Error: Could not initialize alert engine\n");
         return EXIT_FAILURE;
     }
 
-    /* Register default alert thresholds */
     alert_engine_register_threshold("temperature", 30.0, ALERT_LEVEL_WARNING, ">", "Temperature above normal");
     alert_engine_register_threshold("temperature", 50.0, ALERT_LEVEL_CRITICAL, ">", "Temperature critically high");
     alert_engine_register_threshold("vibration", 5.0, ALERT_LEVEL_WARNING, ">", "Vibration above normal");
@@ -43,7 +40,6 @@ int main(int argc, char *argv[]) {
     {
         int result = start_server((int)port_long, argv[2]);
 
-        /* Cleaning up after termination (although the server usually doesn't terminate) */
         sensor_manager_cleanup();
 		alert_engine_cleanup();
 
