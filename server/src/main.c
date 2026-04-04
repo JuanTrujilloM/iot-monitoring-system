@@ -34,10 +34,10 @@ int main(int argc, char *argv[]) {
     }
 
     /* Register default alert thresholds */
-    alert_engine_register_threshold("temperature", 30.0, ALERT_LEVEL_WARNING, ">", "Temperature above normal");
-    alert_engine_register_threshold("temperature", 50.0, ALERT_LEVEL_CRITICAL, ">", "Temperature critically high");
-    alert_engine_register_threshold("vibration", 5.0, ALERT_LEVEL_WARNING, ">", "Vibration above normal");
-    alert_engine_register_threshold("vibration", 10.0, ALERT_LEVEL_CRITICAL, ">", "Vibration critically high");
+    alert_engine_register_threshold("temp", 30.0, ALERT_LEVEL_WARNING, ">", "Temperature above normal");
+    alert_engine_register_threshold("temp", 50.0, ALERT_LEVEL_CRITICAL, ">", "Temperature critically high");
+    alert_engine_register_threshold("vib", 5.0, ALERT_LEVEL_WARNING, ">", "Vibration above normal");
+    alert_engine_register_threshold("vib", 10.0, ALERT_LEVEL_CRITICAL, ">", "Vibration critically high");
     alert_engine_register_threshold("energy", 500.0, ALERT_LEVEL_WARNING, ">", "Energy consumption high");
 
     {

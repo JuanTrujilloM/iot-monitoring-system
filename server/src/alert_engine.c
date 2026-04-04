@@ -35,9 +35,6 @@ int alert_engine_register_threshold(const char* sensor_type, double threshold, A
     }
 
     pthread_mutex_lock(&alert_mutex);
-
-    // COPIA CORRECTA DEL TIPO (esto era lo que faltaba)
-    strncpy(thresholds[threshold_count].sensor_type, sensor_type, 15);
     thresholds[threshold_count].sensor_type[15] = '\0';
 
     strncpy(thresholds[threshold_count].sensor_type, sensor_type, sizeof(thresholds[0].sensor_type) - 1);
@@ -70,6 +67,7 @@ static int check_condition(double value, double threshold, const char* condition
     return 0;
 }
 
+/*
 static int is_alert_already_active(const char* sensor_id, AlertLevel level)
 {
     for (int i = 0; i < active_alert_count; i++) {
@@ -81,6 +79,7 @@ static int is_alert_already_active(const char* sensor_id, AlertLevel level)
     }
     return 0;
 }
+*/
 
 static void add_active_alert(const char* sensor_id, const char* sensor_type, double value, AlertLevel level, const char* message)
 {
@@ -132,13 +131,13 @@ int alert_engine_check_measurement(const char* sensor_id, const char* sensor_typ
     char debug[256];
     snprintf(debug, sizeof(debug), "DEBUG ALERT CHECK: sensor=%s tipo='%s' valor=%.2f", 
              sensor_id, sensor_type, value);
-    logger_info(debug);
+    //logger_info(debug);
 
     for (int i = 0; i < threshold_count; i++) {
         char debug2[256];
         snprintf(debug2, sizeof(debug2), "DEBUG THRESHOLD %d: tipo='%s' umbral=%.2f cond='%s'", 
                  i, thresholds[i].sensor_type, thresholds[i].threshold_value, thresholds[i].condition);
-        logger_info(debug2);
+        //logger_info(debug2);
 
         // Comparación más segura (ignora espacios al final y longitud)
         if (thresholds[i].is_active && strncmp(thresholds[i].sensor_type, sensor_type, 15) == 0) {
@@ -180,6 +179,7 @@ int alert_engine_check_measurement(const char* sensor_id, const char* sensor_typ
     char final[128];
     snprintf(final, sizeof(final), "DEBUG FINAL: Se dispararon %d alertas", alerts_triggered);
     logger_info(final);
+ 
 
     pthread_mutex_unlock(&alert_mutex);
 

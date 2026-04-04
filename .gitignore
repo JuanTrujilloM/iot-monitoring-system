@@ -10,7 +10,13 @@ server/logs/*.log
 server/logs.txt
 server/test_logs.txt
 !server/logs/.gitkeep
+*.log
+logs/
 
 # Python sensors
 sensors/__pycache__/
 sensors/*.pyc
+
+*.class
+*.db
+out/

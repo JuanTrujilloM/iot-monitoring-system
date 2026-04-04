@@ -146,18 +146,13 @@ static void *handle_client(void *arg) {
                             response = protocol_build_ok("MEASUREMENT_RECEIVED");
 
                             const char* sensor_type = sensor_manager_get_sensor_type(msg.args[0]);
-                            
-                            // DEBUG (temporal)
-                            char debug[256];
-                            snprintf(debug, sizeof(debug), "DEBUG - Medición sensor=%s tipo=%s valor=%.2f", 
-                                     msg.args[0], sensor_type ? sensor_type : "NULL", value);
-                            logger_info(debug);
+							
 
                             if (sensor_type) {
                                 int alerts_triggered = alert_engine_check_measurement(msg.args[0], sensor_type, value);
                                 if (alerts_triggered > 0) {
                                     char alert_msg[256];
-                                    snprintf(alert_msg, sizeof(alert_msg), "ALERT %s Umbral superado\r\n", msg.args[0]);
+                                    snprintf(alert_msg, sizeof(alert_msg), "ALERTA [%s] %s %.2f °C - Umbral superado!\r\n", msg.args[0], sensor_type, value);
                                     broadcast_alert(alert_msg);
                                     logger_info("Broadcast alert sent to all operators");
                                 }
@@ -323,7 +318,7 @@ int start_server(int port, const char *log_file) {
 	snprintf(message, sizeof(message), "Server listening on port %d", port);
     logger_info(message);
 
-    sensor_manager_init();
+    //sensor_manager_init();
 
 	while (1) {
 		int client_fd;
