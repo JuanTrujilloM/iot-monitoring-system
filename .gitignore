@@ -5,13 +5,10 @@ server/server
 server/server.exe
 server/protocol_test
 
-# Logs 
-server/logs/*.log
-server/logs.txt
-server/test_logs.txt
-!server/logs/.gitkeep
+# Logs
 *.log
 logs/
+!logs/.gitkeep
 
 # Python sensors
 sensors/__pycache__/
