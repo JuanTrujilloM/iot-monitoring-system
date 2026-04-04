@@ -1722,3 +1722,23 @@
 
 [2026-04-03 23:08:17] [INFO][Thread 6102446080] IP=127.0.0.1 Port=51736 Message=Receive error or timeout Response=
 [2026-04-03 23:08:38] [INFO][Thread 6101872640] IP=127.0.0.1 Port=51735 Message=Receive error or timeout Response=
+[2026-04-03 23:21:19] [INFO][Thread 8396463872] Server listening on port 8080
+[2026-04-03 23:21:36] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51814 Message=Incoming connection Response=
+[2026-04-03 23:21:36] [INFO][Thread 6126727168] IP=127.0.0.1 Port=51814 Message=Connection started Response=type=unknown
+[2026-04-03 23:21:44] [INFO][Thread 6126727168] Sensor registered: s1 (temp)
+[2026-04-03 23:21:44] [INFO][Thread 6126727168] IP=127.0.0.1 Port=51814 Message=REGISTER_SENSOR Response=OK SENSOR_REGISTERED
+
+[2026-04-03 23:21:51] [INFO][Thread 8396463872] IP=127.0.0.1 Port=51815 Message=Incoming connection Response=
+[2026-04-03 23:21:51] [INFO][Thread 6127300608] IP=127.0.0.1 Port=51815 Message=Connection started Response=type=unknown
+[2026-04-03 23:21:59] [INFO][Thread 6127300608] Operator registered for alerts
+[2026-04-03 23:21:59] [INFO][Thread 6127300608] Operator successfully logged in and registered for alerts
+[2026-04-03 23:21:59] [INFO][Thread 6127300608] IP=127.0.0.1 Port=51815 Message=LOGIN Response=OK ROLE_ADMIN
+
+[2026-04-03 23:22:18] [INFO][Thread 6126727168] Measurement from s1: 60.00 °C
+[2026-04-03 23:22:18] [ERROR][Thread 6126727168] ALERT TRIGGERED: s1 - temp: 60.00 > 30.00 (60.00)
+[2026-04-03 23:22:18] [ERROR][Thread 6126727168] ALERT TRIGGERED: s1 - temp: 60.00 > 50.00 (60.00)
+[2026-04-03 23:22:18] [INFO][Thread 6126727168] Broadcast alert sent to all operators
+[2026-04-03 23:22:18] [INFO][Thread 6126727168] IP=127.0.0.1 Port=51814 Message=MEASUREMENT Response=OK MEASUREMENT_RECEIVED
+
+[2026-04-03 23:22:59] [INFO][Thread 6127300608] IP=127.0.0.1 Port=51815 Message=Receive error or timeout Response=
+[2026-04-03 23:23:18] [INFO][Thread 6126727168] IP=127.0.0.1 Port=51814 Message=Receive error or timeout Response=

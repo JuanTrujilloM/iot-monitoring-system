@@ -118,7 +118,6 @@ static void *handle_client(void *arg) {
         ParsedMessage_t msg;
         const char *response = protocol_build_error("404", "Command not found");
 
-        // Parsear el mensaje con el protocolo
         if (protocol_parse(buffer, bytes_received, &msg) == 0) {
 
             switch (msg.type) {
@@ -140,30 +139,32 @@ static void *handle_client(void *arg) {
                     break;
 
                 case CMD_MEASUREMENT:
-                    if (msg.argc >= 3) {
-                        double value = atof(msg.args[1]);
-                        if (sensor_manager_add_measurement(msg.args[0], value, msg.args[2]) == 0) {
-                            response = protocol_build_ok("MEASUREMENT_RECEIVED");
+					if (msg.argc >= 4) { 
+						double value = atof(msg.args[1]);
 
-                            const char* sensor_type = sensor_manager_get_sensor_type(msg.args[0]);
-							
+						if (sensor_manager_add_measurement(msg.args[0], value, msg.args[2]) == 0) {
+							response = protocol_build_ok("MEASUREMENT_RECEIVED");
 
-                            if (sensor_type) {
-                                int alerts_triggered = alert_engine_check_measurement(msg.args[0], sensor_type, value);
-                                if (alerts_triggered > 0) {
-                                    char alert_msg[256];
-                                    snprintf(alert_msg, sizeof(alert_msg), "ALERTA [%s] %s %.2f °C - Umbral superado!\r\n", msg.args[0], sensor_type, value);
-                                    broadcast_alert(alert_msg);
-                                    logger_info("Broadcast alert sent to all operators");
-                                }
-                            }
-                        } else {
-                            response = protocol_build_error("404", "Sensor not registered");
-                        }
-                    } else {
-                        response = protocol_build_error("400", "Missing arguments");
-                    }
-                    break;
+							const char* sensor_type = sensor_manager_get_sensor_type(msg.args[0]);
+
+							if (sensor_type) {
+								int alerts_triggered = alert_engine_check_measurement(msg.args[0], sensor_type, value);
+								if (alerts_triggered > 0) {
+									char alert_msg[256];
+									snprintf(alert_msg, sizeof(alert_msg), 
+											"ALERTA [%s] %s %.2f %s - Umbral superado!\r\n", 
+											msg.args[0], sensor_type, value, msg.args[2]);
+									broadcast_alert(alert_msg);
+									logger_info("Broadcast alert sent to all operators");
+								}
+							}
+						} else {
+							response = protocol_build_error("404", "Sensor not registered");
+						}
+					} else {
+						response = protocol_build_error("400", "Missing arguments");
+					}
+					break;
 
                 case CMD_LOGIN:
                     if (msg.argc >= 2) {
@@ -174,7 +175,7 @@ static void *handle_client(void *arg) {
                             char ok_msg[128];
                             snprintf(ok_msg, sizeof(ok_msg), "ROLE_%s", role);
                             response = protocol_build_ok(ok_msg);
-                            register_operator(client_fd);     // ←←← SOLO si el login es exitoso
+                            register_operator(client_fd);
                             logger_info("Operator successfully logged in and registered for alerts");
                         } else if (auth_result == 0) {
                             response = protocol_build_error("401", "Invalid credentials");
@@ -187,7 +188,6 @@ static void *handle_client(void *arg) {
                     break;
 
                 case CMD_OPERATOR_IDENTIFY:
-                    /* Operador confirmando su rol como supervisor en tiempo real */
                     response = protocol_build_ok("OPERATOR_CONNECTED");
                     logger_event("INFO", client_ip, client_port, "OPERATOR_IDENTIFY", "Operator supervisor connected");
                     break;
@@ -217,7 +217,6 @@ static void *handle_client(void *arg) {
                 case CMD_GET_STATUS:
                 {
                     char status_text[128];
-                    // Por ahora usamos un valor fijo (más adelante podemos contar sensores reales)
                     snprintf(status_text, sizeof(status_text), "%d sensors active - System OK", 5);
                     response = protocol_build_status(status_text);
                     break;
@@ -229,15 +228,13 @@ static void *handle_client(void *arg) {
             }
         }
 
-        // Enviar respuesta y registrar en log
         if (send_complete_response(client_fd, response, client_ip, client_port, msg.raw_buffer) == 0) {
             logger_event("INFO", client_ip, client_port, msg.raw_buffer, response);
         } else {
-            break;  // Error al enviar → cerrar conexión
+            break;  
         }
     }
 
-    // Cliente se desconectó o hubo error
     if (bytes_received == 0) {
         logger_event("INFO", client_ip, client_port, "Client disconnected", "");
     } else {
@@ -318,7 +315,6 @@ int start_server(int port, const char *log_file) {
 	snprintf(message, sizeof(message), "Server listening on port %d", port);
     logger_info(message);
 
-    //sensor_manager_init();
 
 	while (1) {
 		int client_fd;

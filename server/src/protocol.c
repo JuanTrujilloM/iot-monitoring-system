@@ -14,7 +14,6 @@ int protocol_parse(const char* buffer, int bytes_received, ParsedMessage_t* msg)
     memcpy(msg->raw_buffer, buffer, bytes_received);
     msg->raw_buffer[bytes_received] = '\0';
 
-    // Quitar \r\n finales
     char* p = msg->raw_buffer;
     while (*p) {
         if (*p == '\r' || *p == '\n') { *p = '\0'; break; }
@@ -27,7 +26,6 @@ int protocol_parse(const char* buffer, int bytes_received, ParsedMessage_t* msg)
     char* token = strtok(msg->raw_buffer, " ");
     if (!token) return 0;
 
-    // Comandos en mayúsculas (case-insensitive)
     if (strcasecmp(token, "REGISTER_SENSOR") == 0)  msg->type = CMD_REGISTER_SENSOR;
     else if (strcasecmp(token, "MEASUREMENT") == 0) msg->type = CMD_MEASUREMENT;
     else if (strcasecmp(token, "LOGIN") == 0)        msg->type = CMD_LOGIN;

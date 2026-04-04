@@ -25,7 +25,7 @@ int sensor_manager_register(const char* sensor_type, const char* sensor_id)
 
     pthread_mutex_lock(&sensor_mutex);
 
-    // Verificar si ya existe
+   
     for (int i = 0; i < sensor_count; i++) {
         if (strcmp(sensors[i].id, sensor_id) == 0) {
             sensors[i].is_active = 1;
@@ -35,7 +35,7 @@ int sensor_manager_register(const char* sensor_type, const char* sensor_id)
         }
     }
 
-    // Registrar nuevo sensor
+    
     if (sensor_count >= MAX_SENSORS) {
         pthread_mutex_unlock(&sensor_mutex);
         logger_error("Maximum number of sensors reached");

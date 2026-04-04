@@ -67,19 +67,6 @@ static int check_condition(double value, double threshold, const char* condition
     return 0;
 }
 
-/*
-static int is_alert_already_active(const char* sensor_id, AlertLevel level)
-{
-    for (int i = 0; i < active_alert_count; i++) {
-        if (strcmp(active_alerts[i].sensor_id, sensor_id) == 0 &&
-            active_alerts[i].level == level &&
-            !active_alerts[i].is_resolved) {
-            return 1;
-        }
-    }
-    return 0;
-}
-*/
 
 static void add_active_alert(const char* sensor_id, const char* sensor_type, double value, AlertLevel level, const char* message)
 {
@@ -88,7 +75,6 @@ static void add_active_alert(const char* sensor_id, const char* sensor_type, dou
         return;
     }
 
-    // Buscar slot vacío o actualizar existente
     int slot = -1;
     for (int i = 0; i < MAX_ALERTS; i++) {
         if (active_alerts[i].sensor_id[0] == '\0' || active_alerts[i].is_resolved) {
@@ -117,7 +103,7 @@ static void add_active_alert(const char* sensor_id, const char* sensor_type, dou
     char log_msg[256];
     snprintf(log_msg, sizeof(log_msg), "ALERT TRIGGERED: %s - %s (%.2f)",
              sensor_id, message, value);
-    logger_error(log_msg); // Usar error level para alertas
+    logger_error(log_msg);
 }
 
 int alert_engine_check_measurement(const char* sensor_id, const char* sensor_type, double value)
@@ -128,27 +114,16 @@ int alert_engine_check_measurement(const char* sensor_id, const char* sensor_typ
 
     pthread_mutex_lock(&alert_mutex);
 
-    char debug[256];
-    snprintf(debug, sizeof(debug), "DEBUG ALERT CHECK: sensor=%s tipo='%s' valor=%.2f", 
-             sensor_id, sensor_type, value);
-    //logger_info(debug);
-
     for (int i = 0; i < threshold_count; i++) {
-        char debug2[256];
-        snprintf(debug2, sizeof(debug2), "DEBUG THRESHOLD %d: tipo='%s' umbral=%.2f cond='%s'", 
-                 i, thresholds[i].sensor_type, thresholds[i].threshold_value, thresholds[i].condition);
-        //logger_info(debug2);
-
-        // Comparación más segura (ignora espacios al final y longitud)
-        if (thresholds[i].is_active && strncmp(thresholds[i].sensor_type, sensor_type, 15) == 0) {
-            logger_info("→ Coincide tipo de sensor");
+        if (thresholds[i].is_active && 
+            strncmp(thresholds[i].sensor_type, sensor_type, 15) == 0) {
 
             if (check_condition(value, thresholds[i].threshold_value, thresholds[i].condition)) {
+
                 char alert_msg[MAX_ALERT_MESSAGE];
                 snprintf(alert_msg, sizeof(alert_msg), "%s: %.2f %s %.2f",
                          sensor_type, value, thresholds[i].condition, thresholds[i].threshold_value);
 
-                // Actualizar alerta existente o agregar nueva
                 int updated = 0;
                 for (int j = 0; j < active_alert_count; j++) {
                     if (strcmp(active_alerts[j].sensor_id, sensor_id) == 0 &&
@@ -161,25 +136,16 @@ int alert_engine_check_measurement(const char* sensor_id, const char* sensor_typ
                         break;
                     }
                 }
+
                 if (!updated) {
                     add_active_alert(sensor_id, sensor_type, value, thresholds[i].level, alert_msg);
                     alerts_triggered++;
-
-                    logger_info("→ ALERTA GENERADA Y REGISTRADA");
-                } else {
-                    logger_info("→ Alerta ya activa (no se repite)");
                 }
+
                 thresholds[i].last_triggered = time(NULL);
             }
-        } else {
-            logger_info("→ No coincide tipo de sensor");
         }
     }
-
-    char final[128];
-    snprintf(final, sizeof(final), "DEBUG FINAL: Se dispararon %d alertas", alerts_triggered);
-    logger_info(final);
- 
 
     pthread_mutex_unlock(&alert_mutex);
 
