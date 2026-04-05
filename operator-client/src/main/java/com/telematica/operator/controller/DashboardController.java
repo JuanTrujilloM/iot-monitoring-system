@@ -31,7 +31,7 @@ public class DashboardController {
         return "dashboard";
     }
 
-    /** REST endpoint — carga inicial al abrir la página. */
+    /** REST endpoint — initial load when opening the page. */
     @GetMapping("/api/sensors")
     @ResponseBody
     public List<SensorData> getSensors() {

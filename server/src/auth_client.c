@@ -13,12 +13,12 @@ int auth_client_verify(const char* username, const char* password, char* role_bu
     struct hostent *server;
     int connected = 0;
     
-    // Declaración de variables que faltaban
+    // Declaration of missing variables
     char request[256];
     char buffer[1024];
     int valread;
     
-    // Intentar primero nombre Docker y luego localhost para entorno local.
+    // Try first naming Docker and then localhost for local environment.
     {
         const char* auth_hosts[] = {"auth-service", "127.0.0.1"};
         size_t i;
@@ -64,28 +64,28 @@ int auth_client_verify(const char* username, const char* password, char* role_bu
         return -1;
     }
 
-    // Formatear y enviar la petición
+    // Format and send the request
     snprintf(request, sizeof(request), "%s:%s\n", username, password);
     send(sock, request, strlen(request), 0);
 
-    // Leer la respuesta
+    // Read the answer
     valread = read(sock, buffer, sizeof(buffer) - 1);
     close(sock);
 
     if (valread > 0) {
         buffer[valread] = '\0';
-        // Verificar si la respuesta empieza con ROLE:
+        // Check if the answer starts with ROLE:
         if (strncmp(buffer, "ROLE:", 5) == 0) {
             strncpy(role_buffer, buffer + 5, buffer_size - 1);
             role_buffer[buffer_size - 1] = '\0';
             
-            // Limpiar saltos de línea al final
+            // Clean up line breaks at the end
             char* newline = strpbrk(role_buffer, "\r\n");
             if (newline) *newline = '\0';
             
-            return 1; // Éxito
+            return 1; // Success
         }
     }
     
-    return 0; // Fallo en la autenticación o respuesta inválida
+    return 0; // Authentication failure or invalid response
 }

@@ -264,7 +264,7 @@ body {
     color: var(--text-muted);
 }
 
-/* ─── Grupos de sensores ─────────────────────────────────────────── */
+/* ─── Sensor groups ─────────────────────────────────────────── */
 .sensor-groups {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -293,7 +293,7 @@ body {
 .group-icon  { font-size: 18px; }
 .group-title { font-size: 14px; font-weight: 600; color: var(--text); flex: 1; }
 
-/* ─── Tabla sensores ─────────────────────────────────────────────── */
+/* ─── Sensor table ─────────────────────────────────────────────── */
 .table-wrapper {
     border: 1px solid var(--border);
     border-radius: 6px;
@@ -342,7 +342,7 @@ body {
     font-family: sans-serif;
 }
 
-/* ─── Feed alertas ───────────────────────────────────────────────── */
+/* ─── Feed alerts ───────────────────────────────────────────────── */
 .alert-feed {
     background: var(--bg-panel);
     border: 1px solid var(--border);

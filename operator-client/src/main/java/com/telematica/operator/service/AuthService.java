@@ -9,8 +9,8 @@ import java.io.*;
 import java.net.Socket;
 
 /**
- * Valida credenciales contra el auth-service Python (puerto 9000).
- * Protocolo: enviar "usuario:password\n", recibir "ROLE:rol" o "ERROR:...".
+ * Validate credentials against the Python auth-service (port 9000).
+ * Protocol: send "user:password\n", receive "ROLE:role" or "ERROR:...".
  */
 @Service
 public class AuthService {

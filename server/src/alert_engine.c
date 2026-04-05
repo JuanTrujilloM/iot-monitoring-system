@@ -70,7 +70,7 @@ static int check_condition(double value, double threshold, const char* condition
 
 static void add_active_alert(const char* sensor_id, const char* sensor_type, double value, AlertLevel level, const char* message)
 {
-    // Si el arreglo está lleno, descarta la alerta más antigua para hacer espacio
+    // If the array is full, discard the oldest alert to make space.
     if (active_alert_count >= MAX_ALERTS) {
         memmove(&active_alerts[0], &active_alerts[1], sizeof(ActiveAlert_t) * (MAX_ALERTS - 1));
         active_alert_count = MAX_ALERTS - 1;

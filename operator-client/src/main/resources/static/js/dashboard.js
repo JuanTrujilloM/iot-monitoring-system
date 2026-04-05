@@ -11,7 +11,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     });
 });
 
-/* ─── Botón limpiar alertas ──────────────────────────────────────── */
+/* ─── Clear alerts button ──────────────────────────────────────── */
 let alertCount = 0;
 
 document.getElementById('btnClearAlerts').addEventListener('click', () => {
@@ -21,10 +21,10 @@ document.getElementById('btnClearAlerts').addEventListener('click', () => {
     updateAlertBadge();
 });
 
-/* ─── Sensores — carga inicial + broadcast WebSocket ─────────────── */
+/* ─── Sensors — initial load + WebSocket broadcast ─────────────── */
 let sensorCount = 0;
 
-// Carga inicial al abrir la página (trae la caché actual)
+// Initial loading when opening the page (brings the current cache)
 async function fetchSensorsOnce() {
     try {
         const res  = await fetch('/api/sensors');
@@ -38,7 +38,7 @@ async function fetchSensorsOnce() {
 const SENSOR_TYPES = ['temperature', 'energy', 'vibration'];
 
 function renderSensors(sensors) {
-    // Agrupar por tipo
+    // Group by type
     const groups = { temperature: [], energy: [], vibration: [] };
 
     (sensors || []).forEach(s => {
@@ -46,7 +46,7 @@ function renderSensors(sensors) {
         if (groups[type]) groups[type].push(s);
     });
 
-    // Renderizar cada grupo
+    // Render each group
     SENSOR_TYPES.forEach(type => {
         const tbody = document.getElementById('tbody-' + type);
         const count = groups[type].length;
@@ -72,7 +72,7 @@ function renderSensors(sensors) {
 
 fetchSensorsOnce();
 
-/* ─── WebSocket STOMP — alertas en tiempo real ───────────────────── */
+/* ─── WebSocket STOMP — real-time alerts ───────────────────── */
 const stompClient = new StompJs.Client({
     webSocketFactory: () => new SockJS('/ws'),
     reconnectDelay: 5000,
@@ -80,7 +80,7 @@ const stompClient = new StompJs.Client({
     onConnect: () => {
         console.log('WebSocket conectado');
 
-        // Sensores — el servidor C hace broadcast cada 2 s
+        // Sensors — server C broadcasts every 2 seconds
         stompClient.subscribe('/topic/sensors', msg => {
             const sensors = JSON.parse(msg.body);
             renderSensors(sensors);
@@ -88,12 +88,12 @@ const stompClient = new StompJs.Client({
                 'Última actualización: ' + new Date().toLocaleTimeString('es-CO');
         });
 
-        // Alertas del servidor C
+        // Server C alerts
         stompClient.subscribe('/topic/alerts', msg => {
             addAlert(msg.body);
         });
 
-        // Notificación de conexión perdida con el servidor C
+        // Notification of lost connection with server C
         stompClient.subscribe('/topic/connection', msg => {
             if (msg.body === 'LOST') showConnectionLostToast();
         });
@@ -105,9 +105,9 @@ const stompClient = new StompJs.Client({
 
 stompClient.activate();
 
-/* ─── Renderizado de alertas ─────────────────────────────────────── */
+/* ─── Rendering alerts ─────────────────────────────────────── */
 
-// Umbrales (iguales al AlertPanel.java original)
+// Thresholds (same as the original AlertPanel.java)
 const THRESHOLDS = {
     temperature: { warning: 30, critical: 50 },
     vibration:   { warning: 5,  critical: 10 },
@@ -115,7 +115,7 @@ const THRESHOLDS = {
 };
 
 function addAlert(rawLine) {
-    // Formato: "ALERTA sensor_id,sensor_type,value,unit"
+    // Format: "ALERT sensor_id,sensor_type,value,unit"
     const data = rawLine.startsWith('ALERTA ') ? rawLine.substring(7) : rawLine;
     const parts = data.split(',');
 
@@ -150,7 +150,7 @@ function updateAlertBadge() {
     document.getElementById('alertCount').textContent = alertCount;
 }
 
-/* ─── Toast conexión perdida ─────────────────────────────────────── */
+/* ─── Toast lost connection ─────────────────────────────────────── */
 function showConnectionLostToast() {
     const dot   = document.querySelector('.dot');
     const badge = document.getElementById('connectionBadge');
@@ -164,7 +164,7 @@ function showConnectionLostToast() {
     document.getElementById('toastConnectionLost').style.display = 'block';
 }
 
-/* ─── Utilidades ─────────────────────────────────────────────────── */
+/* ─── Utilities ─────────────────────────────────────────────────── */
 function escHtml(str) {
     return String(str)
         .replace(/&/g, '&amp;')

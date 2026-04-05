@@ -34,7 +34,7 @@ const char* protocol_build_sensors_list(const char* list_data);
 const char* protocol_build_alerts_list(const char* alerts_data);
 const char* protocol_build_status(const char* status_text);
 
-/* Detectar si es petición HTTP (para la interfaz web) */
+/* Detect if it is an HTTP request (for the web interface) */
 int protocol_is_http(const char* buffer);
 
 #endif

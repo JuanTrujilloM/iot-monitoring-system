@@ -16,7 +16,7 @@ typedef struct {
     char sensor_type[16];
     double threshold_value;
     AlertLevel level;
-    char condition[8];        // ">", "<", ">=", "<="
+    char condition[8];        
     int is_active;
     time_t created_at;
     time_t last_triggered;

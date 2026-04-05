@@ -21,12 +21,12 @@ import java.util.List;
  * Singleton que mantiene la conexión TCP al servidor C.
  *
  * <ul>
- *   <li>Al arrancar: se conecta, hace LOGIN + OPERATOR_IDENTIFY con las
- *       credenciales de servicio definidas en application.properties.</li>
- *   <li>Hilo lector asíncrono: procesa líneas entrantes del servidor C.
- *       – SENSORS  → actualiza caché de sensores
- *       – ALERTA   → publica al topic WebSocket /topic/alerts</li>
- *   <li>@Scheduled: envía GET_SENSORS cada 2 s para mantener la caché fresca.</li>
+ *   <li>On startup: it connects, performs LOGIN + OPERATOR_IDENTIFY with the
+ *       service credentials defined in application.properties.</li>
+ *   <li>Asynchronous reader thread: Processes incoming lines from the C server.
+ *       – SENSORS  → updates sensor cache
+ *       – ALERT   → publishes to WebSocket topic /topic/alerts</li>
+ *   <li>@Scheduled: send GET_SENSORS every 2s to keep the cache fresh.</li>
  * </ul>
  */
 @Service
@@ -115,7 +115,7 @@ public class ServerConnectionService {
         reader.start();
     }
 
-    /** Solicita lista de sensores; la respuesta la procesa el hilo lector. */
+    /** Request a list of sensors; the response is processed by the reading thread. */
     @Scheduled(fixedDelay = 2000)
     public void pollSensors() {
         if (out != null && running) {

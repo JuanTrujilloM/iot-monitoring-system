@@ -2,50 +2,94 @@
 
 ## Overview
 
-The IoT Monitoring System uses a simple text-based protocol for communication between sensors, the server, and clients. The protocol is designed to be lightweight, human-readable, and easy to parse.
+The IoT Monitoring System is a distributed architecture consisting of multiple components that communicate through text-based TCP/IP protocols. The system includes:
 
-## Protocol Message Format
+- **C Server**: Core monitoring server (TCP port 8080) that manages sensors, stores data, and triggers alerts
+- **Auth Service**: Python authentication service (TCP port 9000) that validates user credentials
+- **Sensor Nodes**: Python-based remote sensor simulators that connect to the main server
+- **Operator Client**: Java/Spring Boot web dashboard that communicates with the C server via WebSocket
 
-### Sensor Data Message (Type 1)
-Sensors send data to the server with this format:
-
-```
-TYPE:SENSOR_ID:SENSOR_TYPE:VALUE:TIMESTAMP
-```
-
-**Example:**
-```
-1:42:1:25.5:1712177000
-```
-
-| Field | Type | Description | Example |
-|-------|------|-------------|---------|
-| TYPE | int | Message type (1=SENSOR_DATA) | `1` |
-| SENSOR_ID | int | Unique sensor identifier | `42` |
-| SENSOR_TYPE | int | Type of sensor (1=TEMP, 2=ENERGY, 3=VIBRATION) | `1` |
-| VALUE | float | Sensor reading value | `25.5` |
-| TIMESTAMP | long | Unix timestamp of measurement | `1712177000` |
+All inter-component communication uses line-terminated text protocols (messages end with `\r\n`) designed for simplicity and human readability.
 
 ---
 
-## Message Types
+## System Architecture
 
-```c
-MSG_TYPE_SENSOR_DATA = 1      /* Sensor sends data to server */
-MSG_TYPE_COMMAND = 2           /* Client sends command to server */
-MSG_TYPE_RESPONSE = 3          /* Server responds to sensor/client */
-MSG_TYPE_ALERT = 4            /* Server sends alert to client */
-MSG_TYPE_QUERY = 5            /* Client requests data from server */
 ```
+┌─────────────────┐
+│   Auth Service  │      Validates user credentials
+│   (Python)      │
+│   Port: 9000    │
+└────────┬────────┘
+         │
+         ▼
+    [Socket]
+    username:password
+    ◀──────────────────
+    ROLE:operator/admin
+         
+┌──────────────────────────────────────────┐
+│         C Server (Core)                  │
+│      (TCP Port: 8080)                    │
+│                                          │
+│  ├─ Sensor Manager                       │
+│  ├─ Alert Engine                         │
+│  └─ Connected Clients Registry           │
+└────▲──────────────────▲──────────────────┘
+     │                  │
+     │                  │
+  [TCP]            [WebSocket]
+   Port            Port 8080
+   8080            (HTTP Upgrade)
+     │                  │
+     │                  ▼
+┌────┴──────────────────────────┐
+│  Sensor Nodes (Python)        │
+│  - temperature                │
+│  - energy                     │
+│  - vibration                  │
+│  (Multiple instances)         │
+└──────────────────────────────┘
+
+     ┌────────────────────────────┐
+     │  Operator Dashboard        │
+     │  (Java/Spring Boot)        │
+     │  http://localhost:8081     │
+     └────────────────────────────┘
+```
+
+---
+
+## Main Protocol: TCP Text Messages
+
+The server and clients communicate via TCP using line-terminated commands. Each message is a space-separated command followed by arguments, ending with `\r\n`.
+
+### Message Structure
+```
+COMMAND [ARG1] [ARG2] ... [ARGN]\r\n
+```
+
+### Command Types
+
+| Command | Sender | Purpose | Arguments |
+|---------|--------|---------|-----------|
+| `LOGIN` | Sensor/Client | Authenticate to the server | `<username> <password>` |
+| `OPERATOR_IDENTIFY` | Operator Client | Identify as operator connection | (no args) |
+| `REGISTER_SENSOR` | Sensor | Register a new sensor | `<sensor_id> <sensor_type>` |
+| `MEASUREMENT` | Sensor | Report sensor reading | `<sensor_id> <sensor_type> <value>` |
+| `GET_SENSORS` | Client | Retrieve sensor list | (no args) |
+| `GET_STATUS` | Client | Get server status | (no args) |
+| `GET_ALERTS` | Client | Get alert list | (no args) |
+| `PING` | Any | Health check | (no args) |
 
 ---
 
 ## Sensor Types
 
 ```c
-SENSOR_TYPE_TEMPERATURE = 1    /* Temperature sensor (°C) */
-SENSOR_TYPE_ENERGY = 2         /* Energy consumption (kWh) */
-SENSOR_TYPE_VIBRATION = 3      /* Vibration level (1-100) */
+SENSOR_TYPE_TEMPERATURE = 1    // Temperature in Celsius (°C)
+SENSOR_TYPE_ENERGY = 2         // Energy consumption (kWh)
+SENSOR_TYPE_VIBRATION = 3      // Vibration level (0-100)
 ```
 
 ### Acceptable Value Ranges
@@ -58,165 +102,222 @@ SENSOR_TYPE_VIBRATION = 3      /* Vibration level (1-100) */
 
 ---
 
-## Response Message Format
+## Server Responses
 
-When the server receives a sensor data message, it responds with:
+The server responds to commands with status messages in the following format:
 
 ```
-STATUS_CODE:SENSOR_ID:TIMESTAMP:MESSAGE
+STATUS_CODE:SENSOR_ID:MESSAGE
 ```
 
-**Example:**
+Alternatively, data responses for queries:
+
 ```
-0:42:1712177000:OK
+SENSORS [list_data]
+ALERTA sensor_id message
+STATUS [status_text]
 ```
 
-| Field | Type | Description | Example |
-|-------|------|-------------|---------|
-| STATUS_CODE | int | Response status (0=OK, 1=INVALID_FORMAT, etc.) | `0` |
-| SENSOR_ID | int | ID of sensor being responded to | `42` |
-| TIMESTAMP | long | Server timestamp | `1712177000` |
-| MESSAGE | string | Status message description | `OK` |
+### Common Responses
+
+| Response | Meaning | Example |
+|----------|---------|---------|
+| `OK [details]` | Command succeeded | `OK Temperature registered` |
+| `ERROR [code]` | Command failed | `ERROR INVALID_FORMAT` |
+| `SENSORS ...` | Sensor list data | `SENSORS sensor1:temp:25.5 ...` |
+| `ALERTA` | Alert notification | `ALERTA sensor1 Temperature above threshold` |
+| `PONG` | Response to PING | `PONG` |
 
 ---
 
-## Status Codes
+## Alert System
+
+The alert engine monitors thresholds registered at server startup:
 
 ```c
-STATUS_OK = 0                  /* Message processed successfully */
-STATUS_INVALID_FORMAT = 1      /* Message format is invalid */
-STATUS_INVALID_SENSOR = 2      /* Sensor ID not recognized */
-STATUS_OUT_OF_RANGE = 3        /* Sensor value outside acceptable range */
-STATUS_SERVER_ERROR = 4        /* Server encountered an error */
+alert_engine_register_threshold("temperature", 30.0, WARNING, ">", "Temperature above normal");
+alert_engine_register_threshold("temperature", 50.0, CRITICAL, ">", "Temperature critically high");
+alert_engine_register_threshold("vibration", 5.0, WARNING, ">", "Vibration above normal");
+alert_engine_register_threshold("vibration", 10.0, CRITICAL, ">", "Vibration critically high");
+alert_engine_register_threshold("energy", 500.0, WARNING, ">", "Energy consumption high");
 ```
+
+When a sensor measurement exceeds a threshold:
+1. The alert engine creates an alert
+2. The server broadcasts to all connected operator clients:
+   ```
+   ALERTA <sensor_id> <alert_message>
+   ```
+3. Operator clients receive updates in real-time via WebSocket
 
 ---
 
 ## Protocol Flow Examples
 
-### Example 1: Valid Temperature Sensor Reading
+### Example 1: Sensor Registration Flow
+
+**Sensor node starts and connects to server (TCP):**
+```
+Sensor → Server:  LOGIN sensor sensor_password
+Server → Sensor:  OK Authenticated
+               
+Sensor → Server:  REGISTER_SENSOR sensor-temp-001 1
+Server → Sensor:  OK sensor-temp-001 registered
+```
+
+### Example 2: Sensor Data Submission
+
+```
+Sensor → Server:  MEASUREMENT sensor-temp-001 1 22.3
+Server → Sensor:  OK sensor-temp-001 Data recorded
+```
+
+**Meaning:** Sensor `sensor-temp-001` (type 1 = Temperature) reports 22.3°C. Server acknowledges and stores the reading.
+
+### Example 3: Out of Range Measurement
 
 **Sensor sends:**
 ```
-1:5:1:22.3:1712177000
+Sensor → Server:  MEASUREMENT sensor-temp-001 1 200.0
+Server → Sensor:  ERROR OUT_OF_RANGE Temperature exceeds maximum
 ```
 
-**Server responds:**
+**Meaning:** Temperature of 200°C exceeds the maximum threshold (150°C), so the server rejects the value and triggers an alert.
+
+### Example 4: Operator Client Dashboard Connection Flow
+
+**Operator client connects via WebSocket:**
 ```
-0:5:1712177000:OK
+Operator → Server:  LOGIN operator operator_password
+Server → Operator:  OK Authenticated
+
+Operator → Server:  OPERATOR_IDENTIFY
+Server → Operator:  OK WebSocket operator connection established
+
+Operator → Server:  GET_SENSORS
+Server → Operator:  SENSORS sensor-temp-001:1:22.3 sensor-energy-001:2:145.6 ...
 ```
 
-**Meaning:** Sensor ID 5 (Temperature) reports 22.3°C at timestamp 1712177000. Server acknowledges with OK.
+### Example 5: Alert Broadcast
+
+**When a measurement triggers an alert:**
+```
+Sensor → Server:  MEASUREMENT sensor-temp-001 1 35.5
+Server:  [Alert engine detects 35.5 > 30.0 threshold]
+Server → All Operators:  ALERTA sensor-temp-001:Temperature above normal
+```
 
 ---
 
-### Example 2: Out of Range Temperature
+## Authentication Service (Port 9000)
 
-**Sensor sends:**
+A separate Python service handles credential validation.
+
+### Authentication Handshake
+
+**Client connects to auth service:**
 ```
-1:5:1:200.0:1712177000
+Client → Auth:  username:password
+Auth → Client:  ROLE:operator    [if credentials valid]
+         OR     ERROR:INVALID    [if credentials invalid]
 ```
 
-**Server responds:**
+**Example:**
 ```
-3:5:1712177000:Sensor value out of range
+Client → Auth:  admin:admin123
+Auth → Client:  ROLE:admin
 ```
-
-**Meaning:** Temperature of 200°C exceeds maximum (150°C), so server rejects with status 3.
 
 ---
 
-### Example 3: Invalid Sensor Type
+## WebSocket Integration (Port 8080)
 
-**Sensor sends:**
-```
-1:10:99:50.0:1712177000
-```
+The Operator Client uses WebSocket to receive real-time updates from the server:
 
-**Server responds:**
-```
-1:10:1712177000:Invalid message format
-```
+- **Real-time sensor updates:** Broadcast to all connected operators every 2 seconds (polling via `GET_SENSORS`)
+- **Instant alert notifications:** Pushed immediately when thresholds exceeded
+- **Bidirectional communication:** Operators can send commands, server responds with data
 
-**Meaning:** Sensor type 99 doesn't exist, so server returns invalid format error.
+### WebSocket Message Format
 
----
-
-## Implementation Details
-
-### Parser Function
-```c
-int protocol_parse_message(const char *buffer, int buffer_len, protocol_message_t *message);
-```
-
-Parses incoming raw message and populates the `protocol_message_t` structure. Returns 0 on success, -1 on error.
-
-### Validation
-- **Format validation:** Checks message has all 5 required fields
-- **Range validation:** Ensures sensor value is within acceptable limits
-- **Type validation:** Verifies sensor type is known (1-3)
-
-### Builder Functions
-```c
-int protocol_build_sensor_message(const protocol_message_t *message, char *buffer, int buffer_len);
-int protocol_build_response(const protocol_response_t *response, char *buffer, int buffer_len);
-```
-
-These functions convert message structures into string format for transmission.
-
----
-
-## Usage Example in Code
-
-### Receiving and Parsing
-
-```c
-char buffer[1024];
-protocol_message_t msg;
-
-/* Receive message from socket */
-int bytes_received = recv(client_fd, buffer, sizeof(buffer) - 1, 0);
-
-/* Parse the message */
-if (protocol_parse_message(buffer, bytes_received, &msg) == 0) {
-    printf("Received from sensor %d: %.2f %s\n",
-        msg.sensor_id,
-        msg.value,
-        protocol_get_sensor_type_name(msg.sensor_type));
+Alert messages are broadcast to WebSocket topic `/topic/alerts`:
+```json
+{
+  "message": "Temperature above normal",
+  "sensorId": "sensor-temp-001",
+  "severity": "WARNING",
+  "timestamp": "2026-04-04T10:30:45Z"
 }
 ```
 
-### Building and Sending Response
+---
+
+## Server Implementation
+
+The C server includes:
+
+- **Port 8080:** TCP listener for sensor + operator connections
+- **Sensor Manager:** Tracks registered sensors and their latest readings
+- **Alert Engine:** Monitors measurements against configured thresholds
+- **Logging:** All events written to `server.log`
+
+### Key Thresholds (at Startup)
 
 ```c
-protocol_response_t response;
-char response_buffer[256];
-
-response.status = STATUS_OK;
-response.sensor_id = msg.sensor_id;
-response.timestamp = time(NULL);
-strcpy(response.status_message, "OK");
-
-int response_len = protocol_build_response(&response, response_buffer, sizeof(response_buffer));
-send(client_fd, response_buffer, response_len, 0);
+Temperature: WARNING >= 30°C, CRITICAL >= 50°C
+Vibration:   WARNING >= 5.0, CRITICAL >= 10.0
+Energy:      WARNING >= 500 kWh
 ```
 
 ---
 
-## Security Considerations
+## Error Handling
 
-1. **Input Validation:** The parser validates all fields before accepting messages
-2. **Buffer Overflow Prevention:** All string operations check buffer lengths
-3. **Range Checking:** Sensor values must be within acceptable ranges
-4. **Checksum (Optional):** Support for CRC-like checksums via `protocol_calculate_checksum()`
+The server gracefully handles:
+- **Malformed messages:** Returns `ERROR MALFORMED_COMMAND`
+- **Unknown sensors:** Returns `ERROR INVALID_SENSOR` (sensor not registered)
+- **Out-of-range values:** Returns `ERROR OUT_OF_RANGE` + triggers alert
+- **Network timeouts:** Auto-reconnection with configurable retry interval
+- **Authentication failures:** Connection rejected with `ERROR INVALID`
 
 ---
 
-## Future Extensions
+## Configuration
 
-The protocol can be extended with:
-- **Compression:** For large sensor networks
-- **Encryption:** TLS/SSL wrapper for security
-- **Batch Messages:** Multiple readings in one transmission
-- **Acknowledgment IDs:** For reliable delivery tracking
-- **Sensor Calibration:** Per-sensor calibration data
+### Server Start
+```bash
+./server 8080 server.log
+```
+
+### Sensor Start
+```bash
+python run_sensors.py --host localhost --port 8080 \
+  --id sensor-temp-001 --type temperature --interval 2
+```
+
+### Multiple Sensors (Simultaneous)
+```bash
+python run_sensors.py --host localhost --port 8080 \
+  --id sensor-temp --type temperature --count 3 --interval 2
+# Spawns: sensor-temp-1, sensor-temp-2, sensor-temp-3
+```
+
+---
+
+## Best Practices
+
+1. **Keep-Alive:** Send `PING` periodically to detect dead connections
+2. **Reconnection:** Sensors automatically retry on connection loss (configurable `--retry-interval`)
+3. **Measurement Frequency:** Balance between data freshness and server load (default: 2 seconds)
+4. **Logging:** Enable `server.log` for debugging connection issues
+5. **Credential Security:** Change default passwords in production
+
+---
+
+## Future Enhancements
+
+- Add TLS/SSL encryption for secure communication
+- Support batch sensor measurements in single message
+- Add sensor data persistence (database integration)
+- Implement persistent alert history
+- Add sensor self-diagnostics and health checks

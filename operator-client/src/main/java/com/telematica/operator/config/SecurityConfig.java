@@ -41,7 +41,7 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/login?logout")
                 .permitAll()
             )
-            // CSRF deshabilitado para compatibilidad con WebSocket STOMP
+            // CSRF disabled for compatibility with WebSocket STOMP
             .csrf(csrf -> csrf.disable())
             .authenticationProvider(authProvider());
 

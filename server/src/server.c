@@ -126,7 +126,7 @@ static void *handle_client(void *arg) {
     int bytes_received;
 
     snprintf(client_ip, sizeof(client_ip), "%s", context->ip);
-    /* No liberamos context aquí — necesitamos write_mutex durante toda la conexión */
+    /* We don't release context here — we need write_mutex for the entire connection */
 
     configure_receive_timeout(client_fd);
 
