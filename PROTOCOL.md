@@ -25,7 +25,7 @@ All inter-component communication uses line-terminated text protocols (messages 
          ▼
     [Socket]
     username:password
-    ◀──────────────────
+    ──────────────────
     ROLE:operator/admin
          
 ┌──────────────────────────────────────────┐
