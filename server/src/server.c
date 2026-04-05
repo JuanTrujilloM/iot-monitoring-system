@@ -158,7 +158,7 @@ static void *handle_client(void *arg) {
                     break;
 
                 case CMD_MEASUREMENT:
-					if (msg.argc >= 4) { 
+					if (msg.argc >= 3) { 
 						double value = atof(msg.args[1]);
 
 						if (sensor_manager_add_measurement(msg.args[0], value, msg.args[2]) == 0) {
