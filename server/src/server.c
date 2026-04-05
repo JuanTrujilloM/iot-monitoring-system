@@ -375,7 +375,7 @@ int start_server(int port, const char *log_file) {
 
 		context = (client_context_t *)malloc(sizeof(client_context_t));
 		if (context == NULL) {
-			logger_error("Error allocating memory for client");
+			logger_error("Error allocating memory for client");a
 			CLOSE_SOCKET(client_fd);
 			continue;
 		}
