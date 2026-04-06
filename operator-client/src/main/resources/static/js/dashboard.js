@@ -27,7 +27,7 @@ let sensorCount = 0;
 // Initial loading when opening the page (brings the current cache)
 async function fetchSensorsOnce() {
     try {
-        const res  = await fetch('/api/sensors');
+        const res = await fetch('/api/sensors');
         const data = await res.json();
         renderSensors(data);
     } catch (e) {
@@ -100,7 +100,7 @@ const stompClient = new StompJs.Client({
     },
 
     onDisconnect: () => console.warn('WebSocket desconectado'),
-    onStompError:  frame => console.error('STOMP error:', frame)
+    onStompError: frame => console.error('STOMP error:', frame)
 });
 
 stompClient.activate();
@@ -110,8 +110,8 @@ stompClient.activate();
 // Thresholds (same as the original AlertPanel.java)
 const THRESHOLDS = {
     temperature: { warning: 30, critical: 50 },
-    vibration:   { warning: 5,  critical: 10 },
-    energy:      { warning: 500, critical: 800 }
+    vibration: { warning: 5, critical: 10 },
+    energy: { warning: 500, critical: 800 }
 };
 
 function addAlert(rawLine) {
@@ -120,18 +120,18 @@ function addAlert(rawLine) {
     const parts = data.split(',');
 
     const sensorId = parts[0]?.trim() ?? '?';
-    const type     = parts[1]?.trim() ?? '?';
-    const value    = parts[2]?.trim() ?? '?';
-    const unit     = parts[3]?.trim() ?? '';
+    const type = parts[1]?.trim() ?? '?';
+    const value = parts[2]?.trim() ?? '?';
+    const unit = parts[3]?.trim() ?? '';
 
-    const numVal   = parseFloat(value);
-    const thresh   = THRESHOLDS[type];
-    let level      = 'WARNING';
+    const numVal = parseFloat(value);
+    const thresh = THRESHOLDS[type];
+    let level = 'WARNING';
 
     if (thresh && !isNaN(numVal) && numVal > thresh.critical) level = 'CRITICAL';
 
     const timestamp = new Date().toLocaleString('es-CO', { hour12: false });
-    const cssClass  = level === 'CRITICAL' ? 'alert-critical' : 'alert-warning';
+    const cssClass = level === 'CRITICAL' ? 'alert-critical' : 'alert-warning';
 
     const item = document.createElement('div');
     item.className = `alert-item ${cssClass}`;
@@ -152,7 +152,7 @@ function updateAlertBadge() {
 
 /* ─── Toast lost connection ─────────────────────────────────────── */
 function showConnectionLostToast() {
-    const dot   = document.querySelector('.dot');
+    const dot = document.querySelector('.dot');
     const badge = document.getElementById('connectionBadge');
 
     if (dot) {

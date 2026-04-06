@@ -3,10 +3,10 @@ import time
 import re
 from abc import ABC, abstractmethod
 
-MAX_MSG_LEN   = 1024
-VALID_TYPES   = {"temperature", "energy", "vibration"}
-UNIT_MAP      = {"temperature": "C", "energy": "W", "vibration": "mm/s"}
-ID_PATTERN    = re.compile(r"^[A-Za-z0-9_-]{1,32}$")
+MAX_MSG_LEN = 1024
+VALID_TYPES = {"temperature", "energy", "vibration"}
+UNIT_MAP = {"temperature": "C", "energy": "W", "vibration": "mm/s"}
+ID_PATTERN = re.compile(r"^[A-Za-z0-9_-]{1,32}$")
 
 class ProtocolError(Exception):
     """Raised when the server returns an ERROR response."""
@@ -25,13 +25,13 @@ class SensorBase(ABC):
     """
 
     def __init__(self, host, port, sensor_id, sensor_type, interval, retry_interval):
-        self.host           = host
-        self.port           = port
-        self.sensor_id      = sensor_id
-        self.sensor_type    = sensor_type
-        self.interval       = interval
+        self.host = host
+        self.port = port
+        self.sensor_id = sensor_id
+        self.sensor_type = sensor_type
+        self.interval = interval
         self.retry_interval = retry_interval
-        self._sock          = None
+        self._sock = None
 
     @abstractmethod
     def generate_value(self):
@@ -75,8 +75,8 @@ class SensorBase(ABC):
             return {"status": "OK", "code": None, "detail": detail}
 
         if status == "ERROR":
-            code   = parts[1] if len(parts) > 1 else "500"
-            desc   = parts[2] if len(parts) > 2 else "Unknown error"
+            code = parts[1] if len(parts) > 1 else "500"
+            desc = parts[2] if len(parts) > 2 else "Unknown error"
             return {"status": "ERROR", "code": code, "detail": desc}
 
         return {"status": status, "code": None, "detail": response}
@@ -108,7 +108,7 @@ class SensorBase(ABC):
         self._send(msg)
 
         response = self._recv()
-        parsed   = self._parse_response(response)
+        parsed = self._parse_response(response)
 
         if parsed["status"] == "ERROR":
             print(

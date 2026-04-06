@@ -25,8 +25,8 @@ from sensor_vibration import VibrationSensor
 
 SENSOR_CLASSES = {
     "temperature": TemperatureSensor,
-    "energy":      EnergySensor,
-    "vibration":   VibrationSensor,
+    "energy": EnergySensor,
+    "vibration": VibrationSensor,
 }
 
 
@@ -36,21 +36,21 @@ def build_parser():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
-    parser.add_argument("--host",           default=DEFAULT_HOST,
+    parser.add_argument("--host", default=DEFAULT_HOST,
                         help=f"Server host (default: {DEFAULT_HOST})")
-    parser.add_argument("--port",           type=int, default=DEFAULT_PORT,
+    parser.add_argument("--port", type=int, default=DEFAULT_PORT,
                         help=f"Server TCP port (default: {DEFAULT_PORT})")
-    parser.add_argument("--id",             required=True, dest="sensor_id",
+    parser.add_argument("--id", required=True, dest="sensor_id",
                         help="Unique sensor ID, e.g. sensor-temp-001")
-    parser.add_argument("--type",           required=True, dest="sensor_type",
+    parser.add_argument("--type", required=True, dest="sensor_type",
                         choices=SENSOR_CLASSES.keys(),
                         help="Sensor type: temperature | energy | vibration")
-    parser.add_argument("--interval",       type=float, default=DEFAULT_INTERVAL,
+    parser.add_argument("--interval", type=float, default=DEFAULT_INTERVAL,
                         help=f"Seconds between measurements (default: {DEFAULT_INTERVAL})")
     parser.add_argument("--retry-interval", type=float, default=DEFAULT_RETRY_INTERVAL,
                         dest="retry_interval",
                         help=f"Seconds before reconnection attempt (default: {DEFAULT_RETRY_INTERVAL})")
-    parser.add_argument("--count",          type=int, default=1,
+    parser.add_argument("--count", type=int, default=1,
                         help="Number of simultaneous sensor instances (default: 1)")
     return parser
 
@@ -69,17 +69,17 @@ def validate_args(args, parser):
 def make_sensor(args, sensor_id):
     cls = SENSOR_CLASSES[args.sensor_type]
     return cls(
-        host           = args.host,
-        port           = args.port,
-        sensor_id      = sensor_id,
-        interval       = args.interval,
-        retry_interval = args.retry_interval,
+        host=args.host,
+        port=args.port,
+        sensor_id=sensor_id,
+        interval=args.interval,
+        retry_interval=args.retry_interval,
     )
 
 
 def main():
     parser = build_parser()
-    args   = parser.parse_args()
+    args = parser.parse_args()
     validate_args(args, parser)
 
     if args.count == 1:
@@ -89,7 +89,7 @@ def main():
         threads = []
         for i in range(1, args.count + 1):
             sensor_id = f"{args.sensor_id}-{i}"
-            sensor    = make_sensor(args, sensor_id)
+            sensor = make_sensor(args, sensor_id)
             t = threading.Thread(target=sensor.run, name=sensor_id, daemon=True)
             threads.append(t)
 

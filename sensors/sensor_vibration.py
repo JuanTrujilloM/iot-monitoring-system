@@ -16,10 +16,10 @@ class VibrationSensor(SensorBase):
 
     def generate_value(self):
         r = random.random()
-        if r < 0.10:                          # 10% → CRITICAL (> 10)
+        if r < 0.10: # 10% - CRITICAL (> 10)
             value = random.uniform(11.0, 20.0)
-        elif r < 0.30:                        # 20% → WARNING (5 < x <= 10)
+        elif r < 0.30: # 20% - WARNING (5 < x <= 10)
             value = random.uniform(5.5, 9.5)
-        else:                                 # 70% → normal (< 5)
+        else: # 70% - normal (< 5)
             value = random.uniform(0.5, 4.5)
         return round(max(0.0, min(100.0, value)), 2)

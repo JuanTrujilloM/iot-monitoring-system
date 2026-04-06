@@ -24,8 +24,8 @@ import java.util.List;
  *   <li>On startup: it connects, performs LOGIN + OPERATOR_IDENTIFY with the
  *       service credentials defined in application.properties.</li>
  *   <li>Asynchronous reader thread: Processes incoming lines from the C server.
- *       – SENSORS  → updates sensor cache
- *       – ALERT   → publishes to WebSocket topic /topic/alerts</li>
+ *       - SENSORS - updates sensor cache
+ *       - ALERT - publishes to WebSocket topic /topic/alerts</li>
  *   <li>@Scheduled: send GET_SENSORS every 2s to keep the cache fresh.</li>
  * </ul>
  */
@@ -63,7 +63,7 @@ public class ServerConnectionService {
         try {
             socket = new Socket(serverHost, serverPort);
             out = new PrintWriter(socket.getOutputStream(), true);
-            in  = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             authenticate();
             startReaderThread();

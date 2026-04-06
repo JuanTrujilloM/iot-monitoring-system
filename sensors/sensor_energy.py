@@ -15,8 +15,8 @@ class EnergySensor(SensorBase):
         super().__init__(host, port, sensor_id, self.SENSOR_TYPE, interval, retry_interval)
 
     def generate_value(self):
-        if random.random() < 0.20:   # 20% → WARNING (> 500)
+        if random.random() < 0.20: # 20% - WARNING (> 500)
             value = random.uniform(505.0, 900.0)
-        else:                        # 80% → normal (< 500)
+        else: # 80% - normal (< 500)
             value = random.uniform(150.0, 450.0)
         return round(max(0.0, min(10000.0, value)), 2)
