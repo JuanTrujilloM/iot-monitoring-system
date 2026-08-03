@@ -188,14 +188,18 @@ example `admin` / `Admin@2024!`.
 |---|---|---|
 | Components | 4 containers / hosts | 1 container |
 | Public ports | 8080, 9000, 8090 | dashboard only, on `$PORT` |
-| Sensors | started by hand, locally | 2 started automatically at boot |
+| Sensors | started by hand, locally | 15 started automatically at boot |
 | Auth database | built by `Dockerfile.auth` | built at image build, same way |
 
-Two sensors (temperature and vibration) are enough to produce live readings and
-to trip both the warning and critical alert thresholds. The full fleet would add
-memory pressure for no extra demonstration value: the JVM is capped at
-`-Xmx200m` and the container settles around **235 MB of the 512 MB** the free
+Five sensors of each type run by default. `run_sensors.py --count` runs the
+instances as threads, so a type costs one process whether it has one sensor or
+twenty: going from 6 sensors to 48 moved the container by under 60 MB. With the
+JVM capped at `-Xmx200m` it settles around **280 MB of the 512 MB** the free
 plan allows.
+
+`SENSORS_PER_TYPE` raises or lowers the count without a rebuild. The ceiling is
+`MAX_SENSORS` (50) in `server/include/sensor_manager.h`; past it the server
+rejects the extra registrations and keeps running.
 
 ## Configuration
 
@@ -208,6 +212,7 @@ image runs with no configuration:
 | `IOT_SERVER_HOST` / `IOT_SERVER_PORT` | `127.0.0.1` / `8080` | dashboard, sensors |
 | `IOT_AUTH_HOST` / `IOT_AUTH_PORT` | `127.0.0.1` / `9000` | dashboard |
 | `IOT_SERVER_USERNAME` / `IOT_SERVER_PASSWORD` | `admin` / `Admin@2024!` | dashboard's session with the C server |
+| `SENSORS_PER_TYPE` | `5` | how many sensors of each type to start |
 
 Point these at a remote stack to run the dashboard or the sensors against the
 EC2 deployment instead.

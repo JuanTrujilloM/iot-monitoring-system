@@ -28,11 +28,13 @@ echo "[start-demo] starting central-server"
 cd /app && ./central-server "$SERVER_PORT" /app/logs/server.log &
 wait_for_port "central-server" "$SERVER_PORT"
 
-# Two sensors trip both alert thresholds; the full fleet only adds memory.
+# --count runs the instances as threads in one process, so a type costs the
+# same whether it has one sensor or several.
 echo "[start-demo] starting sensors"
 cd /app/sensors
-python3 run_sensors.py --id demo-temp-001 --type temperature &
-python3 run_sensors.py --id demo-vib-001 --type vibration &
+python3 run_sensors.py --id demo-temp --type temperature --count "${SENSORS_PER_TYPE:-5}" &
+python3 run_sensors.py --id demo-energy --type energy --count "${SENSORS_PER_TYPE:-5}" &
+python3 run_sensors.py --id demo-vib --type vibration --count "${SENSORS_PER_TYPE:-5}" &
 
 echo "[start-demo] starting dashboard on :${PORT:-8090}"
 cd /app
