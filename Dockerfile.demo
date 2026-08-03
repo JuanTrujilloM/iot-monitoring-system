@@ -1,0 +1,38 @@
+# Runs all four components in one container, publishing only the dashboard.
+# The distributed layout lives in docker-compose.yml and DEPLOY.md.
+
+FROM gcc:latest AS server-build
+WORKDIR /build
+COPY server/src/ ./src/
+COPY server/include/ ./include/
+RUN gcc src/*.c -I include -o central-server -lpthread
+
+FROM maven:3.9-eclipse-temurin-17 AS operator-build
+WORKDIR /build
+COPY operator-client/pom.xml ./
+RUN mvn -q dependency:go-offline
+COPY operator-client/src/ ./src/
+RUN mvn -q clean package -DskipTests
+
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends python3 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=server-build /build/central-server ./central-server
+COPY --from=operator-build /build/target/*.jar ./operator-client.jar
+COPY sensors/ ./sensors/
+
+# Scripts only: the committed users.db holds stale credentials that would
+# survive init_db.py's INSERT OR IGNORE.
+COPY auth-service/auth_server.py auth-service/init_db.py ./auth-service/
+RUN cd auth-service && python3 init_db.py && mkdir -p /app/logs
+
+COPY start-demo.sh /usr/local/bin/start-demo.sh
+RUN chmod +x /usr/local/bin/start-demo.sh
+
+EXPOSE 8090
+
+CMD ["start-demo.sh"]

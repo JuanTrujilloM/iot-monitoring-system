@@ -144,3 +144,90 @@ docker logs central-server
 ```
 
 Logs include: client IP, source port, received message, sent response, and generated alerts.
+
+---
+
+# Appendix: Public Demo (Render, free tier)
+
+The distributed layout above needs a host that exposes arbitrary TCP ports, an
+EC2 instance, and clients running on someone's laptop. That is the right shape
+for the project but a poor shape for a demo link.
+
+`Dockerfile.demo` packs all four components into a single image and publishes
+only the dashboard. Everything else — sensors, C server, auth service — talks
+over loopback inside the container, so no TCP ingress is required and the whole
+thing fits in one free web service.
+
+```
+┌─ container ─────────────────────────────────────────┐
+│  sensors (Python) ──TCP:8080──▶ central-server (C)   │
+│                                       │              │
+│                                  TCP:9000            │
+│                                       ▼              │
+│                                auth-service (Python) │
+│                                       ▲              │
+│  dashboard (Spring Boot) ──TCP:8080/9000             │
+└──────────────────────│──────────────────────────────┘
+                   HTTP $PORT  ◀── the only public port
+```
+
+## Deploying
+
+1. Push to `main`.
+2. Render → **New +** → **Blueprint** → pick this repository. `render.yaml`
+   configures the service; no environment variables need to be entered.
+3. First build takes ~10 minutes (it compiles the C server and runs a Maven
+   build). Subsequent deploys reuse the layer cache.
+
+Sign in to the dashboard with any account from `auth-service/init_db.py`, for
+example `admin` / `Admin@2024!`.
+
+## What the demo image changes
+
+| Concern | Distributed setup | Demo image |
+|---|---|---|
+| Components | 4 containers / hosts | 1 container |
+| Public ports | 8080, 9000, 8090 | dashboard only, on `$PORT` |
+| Sensors | started by hand, locally | 2 started automatically at boot |
+| Auth database | built by `Dockerfile.auth` | built at image build, same way |
+
+Two sensors (temperature and vibration) are enough to produce live readings and
+to trip both the warning and critical alert thresholds. The full fleet would add
+memory pressure for no extra demonstration value: the JVM is capped at
+`-Xmx200m` and the container settles around **235 MB of the 512 MB** the free
+plan allows.
+
+## Configuration
+
+Hosts and ports are read from the environment, defaulting to loopback so the
+image runs with no configuration:
+
+| Variable | Default | Used by |
+|---|---|---|
+| `PORT` | `8090` | dashboard HTTP port |
+| `IOT_SERVER_HOST` / `IOT_SERVER_PORT` | `127.0.0.1` / `8080` | dashboard, sensors |
+| `IOT_AUTH_HOST` / `IOT_AUTH_PORT` | `127.0.0.1` / `9000` | dashboard |
+| `IOT_SERVER_USERNAME` / `IOT_SERVER_PASSWORD` | `admin` / `Admin@2024!` | dashboard's session with the C server |
+
+Point these at a remote stack to run the dashboard or the sensors against the
+EC2 deployment instead.
+
+## Fixes made along the way
+
+- **`server/src/server.c:378`** carried a stray `a` after a statement, so the C
+  server did not compile. `Dockerfile.server` and the Makefile build were both
+  broken by it.
+- **`auth-service/users.db` is committed and stale** — it holds `admin` / `123`,
+  and `init_db.py` inserts with `OR IGNORE`, so the stale row survives. The demo
+  image copies only the scripts and rebuilds the database, matching what
+  `Dockerfile.auth` already did. Consider gitignoring the file.
+- **`application.properties` and `sensors/config.py` hardcoded a dead EC2
+  hostname**, which made every clone fail until edited by hand.
+
+## Known issue
+
+Sensors occasionally log `ERROR 400 Missing arguments` or a truncated response
+such as `ERROR SUREMENT_RECEIVED`. The client assumes one `recv()` returns
+exactly one protocol message, so replies that arrive coalesced in the same TCP
+segment are misparsed. Measurements still reach the server and alerts still
+fire; this predates the demo image and is a framing bug in `sensors/sensor_base.py`.

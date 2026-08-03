@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: iot-monitoring-system
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile.demo
+    healthCheckPath: /login
+    envVars:
+      - key: IOT_SERVER_HOST
+        value: 127.0.0.1
+      - key: IOT_AUTH_HOST
+        value: 127.0.0.1
